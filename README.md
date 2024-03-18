@@ -9,11 +9,12 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - Personnes qui attendent une ou plusieurs des 3 langues
 
 ## État de l'art
-- Naver : Pas de page multilignue. Possibilité de chercher dans plusieurs langues mais 1 page/langue → pas pratique pour faire comparaison
-- Rien à destination d'un public européen (Daum 사전 mais à destination des coréens : https://dic.daum.net/search.do?q=%E9%9F%93)
-- Dictionnaire Hanja : https://koreanhanja.app/%e9%9f%93
-- Pleco (téléphone): uniquement chinois mais très bien fait
- - [convertisseur chinois (classique, simplifié) japonais](http://www.jcdic.com/chinese_convert/index.php)
+- Naver : pas de page multilingue, possibilité de chercher dans plusieurs langues mais 1 page/langue → pas pratique pour faire comparaison
+- Daum 사전: à destination des coréens, [lien](https://dic.daum.net/search.do?q=%E9%9F%93)
+- Rien à destination d'un public européen
+- Dictionnaire Hanja : [lien](https://koreanhanja.app/%e9%9f%93)
+- Pleco (téléphone): uniquement chinois mais très bien fait, [lien](https://www.pleco.com)
+ - convertisseur chinois (classique, simplifié) - japonais: [lien](http://www.jcdic.com/chinese_convert/index.php)
 
 ## Groupe
 - Laura Darenne, chinois
