@@ -16,6 +16,7 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - Pleco (téléphone): uniquement chinois mais très bien fait, [lien](https://www.pleco.com)
 - convertisseur chinois (classique, simplifié) - japonais: [lien](http://www.jcdic.com/chinese_convert/index.php)
 - peut-être un API avec dictionnaires gratuits: [lien](https://glosbe.com/)
+- comment écrire le caractère en chinois, les traits: [lien](https://github.com/skishore/makemeahanzi)
 
 ## Groupe
 - Laura Darenne, chinois
