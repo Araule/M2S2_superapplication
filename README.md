@@ -15,7 +15,7 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - Pleco (téléphone): uniquement chinois mais très bien fait
  - [convertisseur chinois (classique, simplifié) japonais](http://www.jcdic.com/chinese_convert/index.php)
 
-## membres du groupe
+## Groupe
 - Laura Darenne, chinois
 - Florian Jacquot, japonais
 - Agathe Wallet, coréen
