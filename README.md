@@ -17,7 +17,7 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - convertisseur chinois (classique, simplifié) - japonais: [lien](http://www.jcdic.com/chinese_convert/index.php)
 - peut-être un API avec dictionnaires gratuits: [lien](https://glosbe.com/)
 - comment écrire le caractère en chinois, les traits: [lien](https://github.com/skishore/makemeahanzi)
-- chinois-français: [lien](https://github.com/guilhemmariotte/HanYuDic)
+- chinois-français: [hanyudic](https://github.com/guilhemmariotte/HanYuDic) et [frcndict](https://github.com/Nilhcem/frcndict-android)
 
 ## Groupe
 - Laura Darenne, chinois
