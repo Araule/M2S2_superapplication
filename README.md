@@ -20,7 +20,7 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - chinois-français: [hanyudic](https://github.com/guilhemmariotte/HanYuDic) et [frcndict](https://github.com/Nilhcem/frcndict-android)
 - dictionnaire chinois: [lien](http://dict.cn/)
 - savoir écrire un caractère en japonais: [lien](https://kanjialive.com/)
-- regarder comment des personnes sur github utilise dict.cn
+- regarder comment des personnes sur github utilise api of dict.cn and youdao.com
 
 ## Groupe
 - Laura Darenne, chinois
