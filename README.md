@@ -19,7 +19,8 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - comment écrire le caractère en chinois, les traits: [lien](https://github.com/skishore/makemeahanzi)
 - chinois-français: [hanyudic](https://github.com/guilhemmariotte/HanYuDic) et [frcndict](https://github.com/Nilhcem/frcndict-android)
 - dictionnaire chinois: [lien](http://dict.cn/)
-- savoir écrire un caractère en japonais: https://kanjialive.com/
+- savoir écrire un caractère en japonais: [lien](https://kanjialive.com/)
+- regarder comment des personnes sur github utilise dict.cn
 
 ## Groupe
 - Laura Darenne, chinois
