@@ -18,6 +18,7 @@ Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82
 - peut-être un API avec dictionnaires gratuits: [lien](https://glosbe.com/)
 - comment écrire le caractère en chinois, les traits: [lien](https://github.com/skishore/makemeahanzi)
 - chinois-français: [hanyudic](https://github.com/guilhemmariotte/HanYuDic) et [frcndict](https://github.com/Nilhcem/frcndict-android)
+- dictionnaire chinois: [lien](http://dict.cn/)
 
 ## Groupe
 - Laura Darenne, chinois
