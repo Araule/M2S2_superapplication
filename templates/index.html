@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="fr">
+	<head>
+		<meta charset="utf-8">
+		<link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
+		<title>Homepage</title>
+	</head>
+	<body>
+		<h1>Homepage</h1>
+		<nav class="menu">
+			<ul>
+				<li><a href="{{ url_for('root')}}">Homepage</a></li><!-- Le lien fait appel à la méthode FastAPI nommée root -->
+				<li><a href="{{ url_for('tutorial') }}">Tutorial</a></li>
+			</ul>
+		</nav>
+		<br/>
+		<br/>
+		<br/>
+		<br/>
+		<div class="contenu">
+			<div class="div-search">
+				<form class="searchbox" action="">
+					<input type="text" placeholder="漢字" name="q" id="q">
+					<button type="submit" id="submit"><i class="fa fa-search">Search</i></button>
+				</form>
+			</div>
+		</div>
+	</body>
+</html>
