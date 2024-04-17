@@ -79,7 +79,7 @@ def main():
         type = 'trad'
 
     # on obtient notre dictionnaire
-    cndict = pd.read_csv("cndict.tsv", sep="\t", header=0)
+    cndict = pd.read_csv("../data/cndict.tsv", sep="\t", header=0)
     cndict["trad"] = cndict["trad"].astype(str)
     cndict["simp"] = cndict["simp"].astype(str)
     cndict["py"] = cndict["py"].astype(str)
