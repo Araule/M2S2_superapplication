@@ -66,4 +66,4 @@ if __name__ == '__main__':
                        'eng': seng,
                        'fra': sfre})
 
-    df.to_csv('../data/jmdict_uniq_term.tsv', sep='\t', index=False)
+    df.to_csv('../data/jmdict.tsv', sep='\t', index=False)
