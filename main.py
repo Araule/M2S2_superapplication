@@ -10,6 +10,17 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
+from scripts import dico_cn
+
+#=== les fonctions extérieures
+def util_get_infos(sentence: str):
+    """ permet d'obtenir un dictionnaire contenant les informations demandées
+
+    Args:
+        sentence (str): la phrase rentrée par l'utilisateur, peut-être également
+            un mot ou un caractère
+    """
+    return dico_cn.main(sentence)
 
 #=== initialisation de l'application
 app = FastAPI() # initialisation de l'app
@@ -28,3 +39,11 @@ async def tutorial(request: Request):
 @app.get("/about")
 async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
+
+#=== les root app.post transmettent/gèrent les données
+@app.post("/get_infos", response_class=HTMLResponse)
+async def get_infos(request: Request):
+    form_data = await request.form() # récupère les valeurs du formulaire
+    tokens = form_data.get('tokens') # valeur du champ name="tokens" dans le formulaire
+    infos = util_get_infos(tokens) # appel à la fonction extérieure pour gérer l'ajout dans la BDD
+    return templates.TemplateResponse("index.html", {"request": request, "results": infos})

@@ -35,8 +35,8 @@
 		<!-- barre de recherche -->
 		<div class="container-fluid bg_cernuschi p-4">
 			<div class="container">
-				<form class="d-flex justify-content-between align-items-center" action="script.php" method="GET" onsubmit="showloader('loader')">
-					<input class="form-control me-2" type="text" placeholder="漢字" name="tokens" id="tokens">
+				<form class="d-flex justify-content-between align-items-center" method="POST" action="{{ url_for('get_infos')}}" onsubmit="showloader('loader')">
+					<input class="form-control me-2" type="text" placeholder="Votre mot ou votre phrase" name="tokens" id="tokens">
 					<button class="btn btn-outline-success" type="submit">Recherche</button>
 				</form>
 			</div>
