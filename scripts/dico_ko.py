@@ -14,7 +14,7 @@ def search_hanja_dic(query_keyword: str):
     return results
 
 
-def build_dict(query_keyword: str):
+def main(query_keyword: str):
     dico={}
     r = search_hanja_dic(query_keyword)
     for entry in r:
@@ -33,17 +33,6 @@ def build_dict(query_keyword: str):
     return dico
 
 
-def main(query):
-    """The main routine."""
-    if len(sys.argv) < 2:
-        print("Usage : kdic [keyword]")
-        sys.exit(0)
-
-    try:
-        pprint(build_dict(query))
-    except:
-        print("Please check your internet connection.")
-
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    pprint(main(sys.argv[1]))
