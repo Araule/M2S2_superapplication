@@ -10,6 +10,7 @@ def search_hanja_dic(query_keyword: str):
     results = regex.findall(r"<tr>.*?<\/tr>", t)
     return results
 
+
 def build_dict(query_keyword: str):
     dico={}
     r = search_hanja_dic(query_keyword)
@@ -24,11 +25,9 @@ def build_dict(query_keyword: str):
             sens = f"{lecture}, {a}"
         else:
             sens = regex.sub(r"<td.*?>(.*?)\(?\d?\d?\)?<\/td>", r"\1", s[0])
-
         dico.update({hanja:(link, sens.strip())})
 
-    pprint(dico)
-    
+    return dico
 
 
 def main(args=None):
@@ -39,7 +38,8 @@ def main(args=None):
 
     query = sys.argv[1]
     try:
-        build_dict(query)
+        # build_dict(query)
+        pprint(build_dict(query))
     except:
         print("Please check your internet connection.")
 
