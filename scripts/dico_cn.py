@@ -37,6 +37,8 @@ from hanziconv import HanziConv
 import jieba
 import regex
 import pandas as pd
+import dico_ko
+import dico_jp
 from pprint import pprint
 
 
@@ -63,25 +65,33 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
                 
                 # si le dataframe n'est pas vide
                 if not dico_refiltered.empty:
-                    #-- la partie définitions de 0 à n
-                    infos = dico_refiltered.to_dict(orient="index")
+                    #-- la partie définitions chinois
+                    infos["chi"] = dico_refiltered.to_dict(orient="index")
                     #-- la partie 'caracters' n'existe pas
                     #-- la partie 'words'
                     words = dico[dico[column].str.contains(tok)][column].to_list()
                     if len(words) != 0 and words != [tok]:
                         infos["words"] = words
+                        
+                        
+                    #-- la partie  définitions coréen AGAAAAAAAAAATHE ICIIIIIIIII
+                    infos["kor"] = dico_ko.main(token) # a renvoyé un dict
+                    #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
+                    infos["jap"] = dico_jp.main(token) # a renvoyé un dict
+                    
+                    
                     #-- on rajoute à notre liste
-                    results.append(words)
+                    results.append(infos)
                 
                 # sinon, on renvoie un dictionnaire quasi vide avec uniquement le caractère  
                 else:
                     #-- on rajoute à notre liste
-                    results.append({0: {'empty': tok}})
+                    results.append(tok)
                     
         # sinon on continue la recherche d'informations
         else: 
             #-- la partie définitions de 0 à n
-            infos = dico_filtered.to_dict(orient="index")
+            infos["chi"] = dico_filtered.to_dict(orient="index")
             #-- la partie 'caracters'
             if len(token) > 1:
                 infos["characters"] = []
@@ -93,23 +103,25 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
             words = dico[dico[column].str.contains(token)][column].to_list()
             if len(words) != 0 and words != [token]:
                 infos["words"] = words
+                
+                
+            #-- la partie  définitions coréen AGAAAAAAAAAATHE ICIIIIIIIII
+            infos["kor"] = dico_ko.main(token) # a renvoyé un dict
+            #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
+            infos["jap"] = dico_jp.main(token) # a renvoyé un dict
+            
+            
             #-- on rajoute à notre liste
             results.append(infos)
 
     return results
 
 
-def main():
-    # on vérifie le nombre d'arguments
-    if len(sys.argv) != 2:
-        print("\033[91mIl faut une phrase, un mot ou un caractère en argument\x1b[0m")
-        sys.exit(1)
-
-    sent = sys.argv[1]
+def main(sent: str):
 
     # on vérifie que ce soit bien du chinois
     if not regex.match(r"[\p{Han}\p{Bopomofo}]+", sent, regex.UNICODE):
-        return {}
+        return []
 
     # on vérifie si les caractères sont en chinois simplifié ou en chinois classique
     simplified_sent = HanziConv.toSimplified(sent)
@@ -129,4 +141,12 @@ def main():
     return infos(sent, cndict, type)
 
 if __name__ == "__main__":
-    pprint(main())
+    
+    # on vérifie le nombre d'arguments
+    if len(sys.argv) != 2:
+        print("\033[91mIl faut une phrase, un mot ou un caractère en argument\x1b[0m")
+        sys.exit(1)
+
+    sent = sys.argv[1]
+    
+    pprint(main(sent))
