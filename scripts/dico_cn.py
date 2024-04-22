@@ -109,8 +109,7 @@ def main():
 
     # on vérifie que ce soit bien du chinois
     if not regex.match(r"[\p{Han}\p{Bopomofo}]+", sent, regex.UNICODE):
-        print("\033[91mCe n'est pas du chinois\x1b[0m")
-        sys.exit(1)
+        return {}
 
     # on vérifie si les caractères sont en chinois simplifié ou en chinois classique
     simplified_sent = HanziConv.toSimplified(sent)
