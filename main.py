@@ -1,30 +1,30 @@
-from fastapi import FastAPI, Request, Form
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+
+""" l'application peut être lancé de cette façon:
+        $ uvicorn main:app --reload
+"""
+
+#=== les librairies importées
+from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
-# from pydantic import BaseModel
-# from typing import Literal, Optional
-# from uuid import uuid4
-# from fastapi.encoders import jsonable_encoder
 
-# import json
-# import os
+#=== initialisation de l'application
+app = FastAPI() # initialisation de l'app
+templates = Jinja2Templates(directory="templates") # active le moteur de template Jinja et indique l'emplacement des templates HTML
+app.mount("/static", StaticFiles(directory="static"), name="static") # indique l'emplacement des fichiers statiques (images, css)
 
-# Initialisation de l'application
-app = FastAPI()
-
-#Cette ligne active le moteur de template Jinja et indique que les templates HTML seront stockés dans le dossier "templates"
-templates = Jinja2Templates(directory="templates")
-
-# Cette ligne indique que les fichiers statiques (images, css) seront placés dans le dossier nommé "static"
-app.mount("/static", StaticFiles(directory="static"), name="static")
-
-
-# Modification de la route pour renvoyer du HTML
+#=== les root app.get affichent les templates
 @app.get("/")
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/tutorial", response_class=HTMLResponse)
+@app.get("/tutorial")
 async def tutorial(request: Request):
-    return templates.TemplateResponse("tutorial.html", {"request":request})
+    return templates.TemplateResponse("tutorial.html", {"request": request})
+
+@app.get("/about")
+async def about(request: Request):
+    return templates.TemplateResponse("about.html", {"request": request})

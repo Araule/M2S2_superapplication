@@ -3,27 +3,58 @@
 	<head>
 		<meta charset="utf-8">
 		<link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
-		<title>Homepage</title>
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+		<title>Home</title>
 	</head>
 	<body>
-		<h1>Homepage</h1>
-		<nav class="menu">
-			<ul>
-				<li><a href="{{ url_for('root')}}">Homepage</a></li><!-- Le lien fait appel à la méthode FastAPI nommée root -->
-				<li><a href="{{ url_for('tutorial') }}">Tutorial</a></li>
-			</ul>
-		</nav>
-		<br/>
-		<br/>
-		<br/>
-		<br/>
-		<div class="contenu">
-			<div class="div-search">
-				<form class="searchbox" action="">
-					<input type="text" placeholder="漢字" name="q" id="q">
-					<button type="submit" id="submit"><i class="fa fa-search">Search</i></button>
+		<!-- barre de navigation -->
+		<nav class="navbar navbar-expand-lg bg-body-tertiary">
+			<div class="container-fluid">
+			  <a class="navbar-brand" href="#">Dictionnaire DWJ</a>
+			  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			  </button>
+			  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+				  <li class="nav-item">
+					<a class="nav-link active" aria-current="page" href="{{ url_for('root')}}">Home</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="{{ url_for('tutorial') }}">Tutorial</a>
+				  </li>
+				  <li class="nav-item">
+					<a class="nav-link" href="{{ url_for('about') }}">About</a>
+				  </li>
+				</ul>
+			  </div>
+			</div>
+		  </nav>
+		<!-- barre de recherche -->
+		<div class="container-fluid bg_cernuschi p-4">
+			<div class="container">
+				<form class="d-flex justify-content-between align-items-center" action="script.php" method="GET">
+					<input class="form-control me-2" type="text" placeholder="漢字" name="tokens" id="tokens">
+					<button class="btn btn-outline-success" type="submit">Recherche</button>
 				</form>
 			</div>
+		</div>
+		<!-- pied de page -->
+		<div class="container">
+			<footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+			  	<div class="col-md-4 d-flex align-items-center">
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-incognito me-1" viewBox="0 0 16 16">
+						<path fill-rule="evenodd" d="m4.736 1.968-.892 3.269-.014.058C2.113 5.568 1 6.006 1 6.5 1 7.328 4.134 8 8 8s7-.672 7-1.5c0-.494-1.113-.932-2.83-1.205l-.014-.058-.892-3.27c-.146-.533-.698-.849-1.239-.734C9.411 1.363 8.62 1.5 8 1.5s-1.411-.136-2.025-.267c-.541-.115-1.093.2-1.239.735m.015 3.867a.25.25 0 0 1 .274-.224c.9.092 1.91.143 2.975.143a30 30 0 0 0 2.975-.143.25.25 0 0 1 .05.498c-.918.093-1.944.145-3.025.145s-2.107-.052-3.025-.145a.25.25 0 0 1-.224-.274M3.5 10h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5m-1.5.5q.001-.264.085-.5H2a.5.5 0 0 1 0-1h3.5a1.5 1.5 0 0 1 1.488 1.312 3.5 3.5 0 0 1 2.024 0A1.5 1.5 0 0 1 10.5 9H14a.5.5 0 0 1 0 1h-.085q.084.236.085.5v1a2.5 2.5 0 0 1-5 0v-.14l-.21-.07a2.5 2.5 0 0 0-1.58 0l-.21.07v.14a2.5 2.5 0 0 1-5 0zm8.5-.5h2a.5.5 0 0 1 .5.5v1a1.5 1.5 0 0 1-3 0v-1a.5.5 0 0 1 .5-.5"/>
+					</svg>
+					<span class="mb-3 mb-md-0 text-body-secondary">Darenne, Wallet &amp; Jacquot</span>
+			  	</div>
+		  
+			  	<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+					<li class="nav-item"><a href="{{ url_for('root')}}" class="nav-link px-2 text-body-secondary">Home</a></li>
+					<li class="nav-item"><a href="{{ url_for('tutorial') }}" class="nav-link px-2 text-body-secondary">Tutorial</a></li>
+					<li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link px-2 text-body-secondary">About</a></li>
+				</ul>
+			</footer>
 		</div>
 	</body>
 </html>
