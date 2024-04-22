@@ -38,7 +38,7 @@ import jieba
 import regex
 import pandas as pd
 import dico_ko
-import dico_jp
+# import dico_jp
 from pprint import pprint
 
 
@@ -54,6 +54,9 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
     results = []
 
     for token in tokens:
+        # notre dictionnaire pour le token
+        infos = {}
+        
         # on va chercher les informations dans le dataframe
         dico_filtered = dico.loc[dico[column] == token].reset_index(drop=True)
         
@@ -61,25 +64,26 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
         if dico_filtered.empty:  
             for tok in token:
                 # on va chercher les informations dans le dataframe une nouvelle fois
-                dico_filtered = dico.loc[dico[column] == tok].reset_index(drop=True)
+                dico_refiltered = dico.loc[dico[column] == tok].reset_index(drop=True)
                 
                 # si le dataframe n'est pas vide
                 if not dico_refiltered.empty:
                     #-- la partie définitions chinois
-                    infos["chi"] = dico_refiltered.to_dict(orient="index")
+                    cn_defs = dico_refiltered.to_dict(orient="index")
+                    infos["chi"] = cn_defs
                     #-- la partie 'caracters' n'existe pas
                     #-- la partie 'words'
                     words = dico[dico[column].str.contains(tok)][column].to_list()
                     if len(words) != 0 and words != [tok]:
-                        infos["words"] = words
-                        
-                        
-                    #-- la partie  définitions coréen AGAAAAAAAAAATHE ICIIIIIIIII
-                    infos["kor"] = dico_ko.main(token) # a renvoyé un dict
+                        infos["words"] = words  
+                    #-- la partie  définitions coréen
+                    if column != "trad":
+                        new_tok = dico.loc[dico[column] == tok].reset_index(drop=True)["trad"].to_list()[0]
+                        infos["kor"] = dico_ko.main(new_tok) # a renvoyé un dict
+                    else:
+                        infos["kor"] = dico_ko.main(tok) # a renvoyé un dict
                     #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
-                    infos["jap"] = dico_jp.main(token) # a renvoyé un dict
-                    
-                    
+                    # infos["jap"] = dico_jp.main(token) # a renvoyé un dict
                     #-- on rajoute à notre liste
                     results.append(infos)
                 
@@ -91,7 +95,9 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
         # sinon on continue la recherche d'informations
         else: 
             #-- la partie définitions de 0 à n
-            infos["chi"] = dico_filtered.to_dict(orient="index")
+            cn_defs = dico_filtered.to_dict(orient="index")
+            infos["chi"] = cn_defs
+            
             #-- la partie 'caracters'
             if len(token) > 1:
                 infos["characters"] = []
@@ -103,12 +109,14 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
             words = dico[dico[column].str.contains(token)][column].to_list()
             if len(words) != 0 and words != [token]:
                 infos["words"] = words
-                
-                
-            #-- la partie  définitions coréen AGAAAAAAAAAATHE ICIIIIIIIII
-            infos["kor"] = dico_ko.main(token) # a renvoyé un dict
+            #-- la partie  définitions coréen
+            if column != "trad":
+                new_token = dico.loc[dico[column] == token].reset_index(drop=True)["trad"].to_list()[0]
+                infos["kor"] = dico_ko.main(new_token) # a renvoyé un dict
+            else:
+                infos["kor"] = dico_ko.main(token) # a renvoyé un dict
             #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
-            infos["jap"] = dico_jp.main(token) # a renvoyé un dict
+            # infos["jap"] = dico_jp.main(token) # a renvoyé un dict
             
             
             #-- on rajoute à notre liste
