@@ -3,6 +3,9 @@ import requests
 import regex
 from pprint import pprint
 
+"""
+Exécution : python3 dico_ko.py <token en hanja>
+"""
 
 def search_hanja_dic(query_keyword: str):
     r = requests.get(f"https://koreanhanja.app/{query_keyword}")
@@ -30,19 +33,17 @@ def build_dict(query_keyword: str):
     return dico
 
 
-def main(args=None):
+def main(query):
     """The main routine."""
     if len(sys.argv) < 2:
         print("Usage : kdic [keyword]")
         sys.exit(0)
 
-    query = sys.argv[1]
     try:
-        # build_dict(query)
         pprint(build_dict(query))
     except:
         print("Please check your internet connection.")
 
 
 if __name__ == "__main__":
-    main()
+    main(sys.argv[1])
