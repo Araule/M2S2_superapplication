@@ -3,3 +3,7 @@ div.bg_cernuschi {
 	background-image: url("recueil_des_traditions_de_jadis_et_de_naguere_kokon_chomon_ju_epoque_edo_1603-1868_c_paris_musees-musee_cernuschi_fond_0.jpg");
 	background-position: top;
 }
+
+div#loader{
+	display:none;
+}
