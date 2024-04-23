@@ -38,7 +38,7 @@ import jieba
 import regex
 import pandas as pd
 import dico_ko
-# import dico_jp
+import dico_jp
 from pprint import pprint
 
 
@@ -83,7 +83,7 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
                     else:
                         infos["kor"] = dico_ko.main(tok) # a renvoyé un dict
                     #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
-                    # infos["jap"] = dico_jp.main(token) # a renvoyé un dict
+                    infos["jap"] = dico_jp.main(token) # a renvoyé un dict
                     #-- on rajoute à notre liste
                     results.append(infos)
                 
@@ -116,7 +116,7 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
             else:
                 infos["kor"] = dico_ko.main(token) # a renvoyé un dict
             #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
-            # infos["jap"] = dico_jp.main(token) # a renvoyé un dict
+            infos["jap"] = dico_jp.main(token) # a renvoyé un dict
             
             
             #-- on rajoute à notre liste

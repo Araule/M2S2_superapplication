@@ -12,7 +12,7 @@ Ex:
 """
 
 import sys
-import MeCab
+# import MeCab
 import regex
 import pandas as pd
 import pprint
@@ -26,20 +26,20 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str="tokens"):
         column (str): trad ou simp en fonction des tokens donnés
     """
     # on split la phrase
-    wakati = MeCab.Tagger("-Owakati")
+    # wakati = MeCab.Tagger("-Owakati")
     # tokens = wakati.parse(sent).split()
-    parser = wakati.parseToNode(sent)
-    lemmatized_sent = []
+    # parser = wakati.parseToNode(sent)
+    # lemmatized_sent = []
     
-    while parser:
-        features = parser.feature.split(',')
-        lemma = features[7]
-        lemmatized_sent.append(lemma)
-        parser = parser.next
+    # while parser:
+    #     features = parser.feature.split(',')
+    #     lemma = features[7]
+    #     lemmatized_sent.append(lemma)
+    #     parser = parser.next
     
     results = []
 
-    for token in lemmatized_sent:
+    for token in sent:
         
         #-- d'abord, les informations sur le token
         # on va chercher les ligne correspondant au token
@@ -66,13 +66,13 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str="tokens"):
     return results
 
 
-def main():
+def main(query_keyword: str):
     # on vérifie le nombre d'arguments
     if len(sys.argv) != 2:
         print("\033[91mIl faut une phrase, un mot ou un caractère en argument\x1b[0m")
         sys.exit(1)
 
-    sent = sys.argv[1]
+    sent = query_keyword
 
     # on vérifie que ce soit bien du japonais
     if not regex.match(r"[[\u3000-\u303f]|[\u3040-\u309f]|[\u30a0-\u30ff]|[\uff00-\uffef]|[\u4e00-\u9faf]|[\u3400-\u4dbf]]+",
