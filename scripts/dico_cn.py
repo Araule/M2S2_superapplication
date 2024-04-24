@@ -2,34 +2,15 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-""" Ce fichier python permet d'aller chercher 
-les informations du chinois pour le dictionnaire
+""" Ce fichier python permet d'aller chercher les informations 
+du chinois, du japonais et du coréen pour le dictionnaire
 
 Vous pouvez appeler le fichier comme ceci:
     $ python dico_cn.py [phrase ou mot]
-    
+
 Ex:
     $ python dico_cn.py 我來到北京 # chinois traditionnel
     $ python dico_cn.py 我来到北京 # chinois simplifié
-
-Ex. avec chinois simplifié
-
-- une liste de dictionnaire 
-- un dictionnaire par token avec un ou plusieurs résultats indexés
-    - 'n': un numéro de definition de 0 à n
-    - 'characters': la clé n'existe que si le token fait plus de 1 caractère, 
-        donne les définitions de chaque caractère se trouvant dans le dico
-    de 0 à n tel que dico[0][0]['eng'] = '/I; me; my/'
-    - 'words': la clé n'existe que s'il y a d'autres mots dans le dico contenant
-        le token
-    - si aucune definition n'a été trouvé à un token, même en le splitant,
-    on obtient : {0: {'empty': token}}
-- chaque dictionnaire comporte plusieurs clés :
-    - 'eng': définition anglais, noté nan s'il n'y en a pas
-    - 'fr': définition français, noté nan s'il n'y en a pas
-    - 'py': le pinyin, la prononciation
-    - 'simp': le caractère simplifié
-    - 'trad': le caractère traditionnel
 """
 
 import sys
@@ -37,13 +18,125 @@ from hanziconv import HanziConv
 import jieba
 import regex
 import pandas as pd
-import dico_ko
-import dico_jp
 from pprint import pprint
 
+#=== partie Agathe
+def search_hanja_dic(query_keyword: str):
+    r = requests.get(f"https://koreanhanja.app/{query_keyword}")
+    t = regex.sub(r"\s+"," ", r.text)
+    results = regex.findall(r"<tr>.*?<\/tr>", t)
+    return results
 
-def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
+def ko_main(query_keyword: str):
+    dico={}
+    r = search_hanja_dic(query_keyword)
+    for entry in r:
+        link = regex.sub(r".*?href=\"(.*?)\">.*", r"\1", entry)
+        hanja = regex.sub(r".*?<a.*?>(.*?)<\/a>.*", r"\1", entry)
+        sens = regex.sub(r".*?<\/a><\/td>", "", entry)
+        s = regex.findall(r"<td.*?>.*?<\/td>", sens)
+        if len(s)>1:
+            lecture = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[0])
+            a = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[1])
+            sens = f"{lecture}, {a}"
+        else:
+            sens = regex.sub(r"<td.*?>(.*?)\(?\d?\d?\)?<\/td>", r"\1", s[0])
+        dico.update({hanja:(link, sens.strip())})
+
+    return dico
+
+
+#=== partie Florian
+def jp_infos(sent: str, dico: pd.core.frame.DataFrame, column: str="tokens"):
     """
+    Args:
+        sent (str): tokens en chinois traditionnel ou simplifié
+        dico (dict): le dictionnaire chinois, français, anglais
+        column (str): trad ou simp en fonction des tokens donnés
+    """
+    # on split la phrase
+    # wakati = MeCab.Tagger("-Owakati")
+    # tokens = wakati.parse(sent).split()
+    # parser = wakati.parseToNode(sent)
+    # lemmatized_sent = []
+    
+    # while parser:
+    #     features = parser.feature.split(',')
+    #     lemma = features[7]
+    #     lemmatized_sent.append(lemma)
+    #     parser = parser.next
+    
+    results = []
+
+    for token in sent:
+        
+        #-- d'abord, les informations sur le token
+        # on va chercher les ligne correspondant au token
+        dico_filtered = dico.loc[dico[column] == token].reset_index(drop=True)
+
+        if dico_filtered.empty:  # si le dataframe est vide, on y va caractère par caractère
+            for tok in token:
+                dico_refiltered = dico.loc[dico[column] == tok].reset_index(drop=True)
+                if not dico_refiltered.empty:
+                    results.append(dico_refiltered.to_dict(orient="index"))
+
+        else: # s'il n'est pas vide, on obtient les infos de chaque caractère également
+            infos = dico_filtered.to_dict(orient="index")
+            #-- puis, les infos supplémentaires sur chaque caractère s'il y en a
+            if len(token) > 1:
+                infos["characters"] = []
+                for tok in token:
+                    dico_refiltered = dico.loc[dico[column] == tok].reset_index(drop=True)
+                    if not dico_refiltered.empty:
+                        infos["characters"].append(dico_refiltered.to_dict(orient="index"))
+                        
+            results.append(infos)
+
+    return results
+
+def jp_main(query_keyword: str):
+    # on vérifie le nombre d'arguments
+    if len(sys.argv) != 2:
+        print("\033[91mIl faut une phrase, un mot ou un caractère en argument\x1b[0m")
+        sys.exit(1)
+
+    sent = query_keyword
+
+    # on vérifie que ce soit bien du japonais
+    if not regex.match(r"[[\u3000-\u303f]|[\u3040-\u309f]|[\u30a0-\u30ff]|[\uff00-\uffef]|[\u4e00-\u9faf]|[\u3400-\u4dbf]]+",
+        # r"[\p{Hiragana}\p{Katakana}\p{Han}" # pour les hiragana, katakana et caractères chinois
+        #                     r"[\x2E80-\x2FD5]" # pour les radicaux de kanjis (caractères chinois)
+        #                     r"[\xFF5F-\xFF9F]" # pour les katakana et les ponctuations (half-width)
+        #                     r"[\x3000-\x303F]" # les symboles et ponctuations japonaises
+        #                     r"[\x31F0-\x31FF\x3220-\x3243\x3280-\x337F]" # pour les autres caractères japonaise (miscellaneous)
+        #                     r"[\xFF01-\xFF5E]]+", # pour les caractères latin (full-width)    
+                        sent, regex.UNICODE):
+        print("\033[91mCe n'est pas du japonais\x1b[0m")
+        sys.exit(1)
+
+    # spécifier les types de données des colonnes
+    dtype_dict = {
+        'tokens': str,
+        'readings': str,
+        'eng': str,
+        'fra': str
+    }
+    # on obtient notre dictionnaire
+    jmdict = pd.read_csv("../data/jmdict.tsv", sep="\t", header=0, dtype=dtype_dict)
+    jmdict["tokens"] = jmdict["tokens"].astype(str)
+    jmdict["readings"] = jmdict["readings"].astype(str)
+    jmdict["eng"] = jmdict["eng"].astype(str)
+    jmdict["fra"] = jmdict["fra"].astype(str)
+
+    return jp_infos(sent, jmdict)
+
+
+#== partie Laura
+def infos(sent: str, dico: pd.core.frame.DataFrame, column: str) -> dict:
+    """ crée le dictionnaire chinois et renvoie 
+    un dictionnaire complet avec toutes les informations 
+    sur le chinois, le coréen et le japonais
+
     Args:
         sent (str): tokens en chinois traditionnel ou simplifié
         dico (dict): le dictionnaire chinois, français, anglais
@@ -79,11 +172,11 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
                     #-- la partie  définitions coréen
                     if column != "trad":
                         new_tok = dico.loc[dico[column] == tok].reset_index(drop=True)["trad"].to_list()[0]
-                        infos["kor"] = dico_ko.main(new_tok) # a renvoyé un dict
+                        infos["kor"] = ko_main(new_tok) # a renvoyé un dict
                     else:
-                        infos["kor"] = dico_ko.main(tok) # a renvoyé un dict
-                    #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
-                    infos["jap"] = dico_jp.main(token) # a renvoyé un dict
+                        infos["kor"] = ko_main(tok) # a renvoyé un dict
+                    #-- la partie  définitions japonais
+                    infos["jap"] = jp_main(token) # a renvoyé un dict
                     #-- on rajoute à notre liste
                     results.append(infos)
                 
@@ -112,24 +205,30 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str):
             #-- la partie  définitions coréen
             if column != "trad":
                 new_token = dico.loc[dico[column] == token].reset_index(drop=True)["trad"].to_list()[0]
-                infos["kor"] = dico_ko.main(new_token) # a renvoyé un dict
+                infos["kor"] = ko_main(new_token) # a renvoyé un dict
             else:
-                infos["kor"] = dico_ko.main(token) # a renvoyé un dict
-            #-- la partie  définitions japonais FLORIAAAAAAAAAAAN ICIIIIIIIII
-            infos["jap"] = dico_jp.main(token) # a renvoyé un dict
-            
-            
+                infos["kor"] = ko_main(token) # a renvoyé un dict
+            #-- la partie  définitions japonais
+            infos["jap"] = jp_main(token) # a renvoyé un dico
             #-- on rajoute à notre liste
             results.append(infos)
 
     return results
 
+def main(sent: str) -> dict:
+    """ 
+    Args:
+        sent (str): la phrase ou le mot rentré par l'utilisateur
+        dans la barre de recherche
 
-def main(sent: str):
+    Returns:
+        dict: un dictionnaire complet avec toutes les informations 
+        sur le chinois, le coréen et le japonais
+    """
 
     # on vérifie que ce soit bien du chinois
     if not regex.match(r"[\p{Han}\p{Bopomofo}]+", sent, regex.UNICODE):
-        return []
+        return [] # renvoie une liste vide
 
     # on vérifie si les caractères sont en chinois simplifié ou en chinois classique
     simplified_sent = HanziConv.toSimplified(sent)
