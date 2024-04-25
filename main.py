@@ -40,11 +40,16 @@ async def tutorial(request: Request):
 async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})
 
-#=== les root app.post transmettent/gèrent les données
-@app.post("/get_infos", response_class=HTMLResponse)
-async def get_infos(request: Request):
+#=== les root app.post et app.get transmettent/gèrent les données
+# 'app.get' nous sert à vider le cache quand l'utilisateur clique sur Dictionnaire DWJ ou Home
+@app.get("/", response_class=HTMLResponse) 
+async def root(request: Request):
+    return templates.TemplateResponse("index.html", {"request": request})
+
+@app.post("/", response_class=HTMLResponse)
+async def root(request: Request):
     form_data = await request.form() # récupère les valeurs du formulaire
     tokens = form_data.get('tokens') # valeur du champ name="tokens" dans le formulaire
     infos = util_get_infos(tokens) # appel à la fonction extérieure pour gérer l'ajout dans la BDD
-    print(infos)
+    print(infos) # affiche sur le terminal pour le debuggage
     return templates.TemplateResponse("index.html", {"request": request, "results": infos})
