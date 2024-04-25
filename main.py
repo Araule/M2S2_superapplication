@@ -46,4 +46,5 @@ async def get_infos(request: Request):
     form_data = await request.form() # récupère les valeurs du formulaire
     tokens = form_data.get('tokens') # valeur du champ name="tokens" dans le formulaire
     infos = util_get_infos(tokens) # appel à la fonction extérieure pour gérer l'ajout dans la BDD
+    print(infos)
     return templates.TemplateResponse("index.html", {"request": request, "results": infos})
