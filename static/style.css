@@ -1,8 +1,14 @@
 /* style du background */
 body {
-	background-image: url("recueil_des_traditions_de_jadis_et_de_naguere_kokon_chomon_ju_epoque_edo_1603-1868_c_paris_musees-musee_cernuschi_fond_0.jpg");
+	background-image: url("recueil_des_traditions_de_jadis_et_de_naguere_kokon_chomon_ju_epoque_edo_1603-1868_c_paris_musees-musee_cernuschi_fond_1.png");
 	background-position: top;
 	background-size: cover;
+}
+
+nav.navbar {
+	width: 100%;
+	position: fixed;
+	top:0;
 }
 
 /* style du boutton qui permet de revenir en haut de la page */
@@ -18,30 +24,15 @@ div#loader{
 	display:none;
 }
 
-/* footer {
+footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
-	z-index: 999;
-} */
-
-/* div#results {
-	opacity: 0.8;
 	background-color: white;
-	border-color: black;
-	border-radius:10px;
-	-webkit-border-radius:10px;
-	-moz-border-radius:10px;
-	border: 2px solid;
-	z-index: 900;
-} */
+}
 
-/* nav.navbar {
-	width: 100%;
-	position: fixed;
-	top:0;
-	z-index: 1000;
-} */
+
+
 
 
 
