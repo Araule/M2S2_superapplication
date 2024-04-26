@@ -32,10 +32,6 @@ app.mount("/static", StaticFiles(directory="static"), name="static") # indique l
 async def root(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
-@app.get("/tutorial")
-async def tutorial(request: Request):
-    return templates.TemplateResponse("tutorial.html", {"request": request})
-
 @app.get("/about")
 async def about(request: Request):
     return templates.TemplateResponse("about.html", {"request": request})

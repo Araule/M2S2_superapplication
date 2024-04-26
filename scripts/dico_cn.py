@@ -111,6 +111,27 @@ def jp_main(query_keyword: str):
 
 
 #== partie Laura
+def group_tokens(tokens: list, entry: str)-> dict:
+    """ groupe la liste de mots par longueur de mots
+
+    Args:
+        tokens (list): liste de mots en chinois
+        token (str): entrée du dictionnaire
+
+    Returns:
+        dict: dictionnaire qui trie la liste 
+        par longueur de mots
+    """
+    token_groups = {}
+    for token in tokens:
+        length = len(token)
+        if token == entry: # pour ne pas avoir notre entrée dans la liste
+            continue
+        if length not in token_groups:
+            token_groups[length] = []
+        token_groups[length].append(token)
+    return token_groups
+
 def infos(sent: str, dico: pd.core.frame.DataFrame, column: str) -> dict:
     """ crée le dictionnaire chinois et renvoie 
     un dictionnaire complet avec toutes les informations 
@@ -147,7 +168,7 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str) -> dict:
                     #-- la partie 'words'
                     words = dico[dico[column].str.contains(tok)][column].to_list()
                     if len(words) != 0 and words != [tok]:
-                        infos["words"] = words
+                        infos["words"] = group_tokens(words, tok)
                     #-- la partie  définitions coréen
                     if column != "trad":
                         new_tok = dico.loc[dico[column] == tok].reset_index(drop=True)["trad"].to_list()[0]
@@ -180,7 +201,7 @@ def infos(sent: str, dico: pd.core.frame.DataFrame, column: str) -> dict:
             #-- la partie 'words'
             words = dico[dico[column].str.contains(token)][column].to_list()
             if len(words) != 0 and words != [token]:
-                infos["words"] = words
+                infos["words"] = group_tokens(words, token)
             #-- la partie  définitions coréen
             if column != "trad":
                 new_token = dico.loc[dico[column] == token].reset_index(drop=True)["trad"].to_list()[0]
