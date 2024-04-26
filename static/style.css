@@ -5,6 +5,12 @@ body {
 	background-position: top;
 }
 
+nav.navbar {
+	width: 100%;
+	position: fixed;
+	top:0;
+}
+
 h1 {
 	text-align: center;
 }
@@ -16,7 +22,7 @@ div#loader{
 
 footer {
 	background-color:white;
-	position: absolute;
+	position: fixed;
 	bottom: 0;
 	width: 100%;
 }
