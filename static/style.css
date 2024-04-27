@@ -5,11 +5,11 @@ body {
 	background-size: cover;
 }
 
-nav.navbar {
+/* nav.navbar {
 	width: 100%;
 	position: fixed;
 	top:0;
-}
+} */
 
 /* style du boutton qui permet de revenir en haut de la page */
 #btn-back-to-top {
@@ -24,12 +24,12 @@ div#loader{
 	display:none;
 }
 
-footer {
+/* footer {
 	position: fixed;
 	bottom: 0;
 	width: 100%;
 	background-color: white;
-}
+} */
 
 
 

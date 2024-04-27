@@ -73,6 +73,7 @@
 										<p class="fs-1 text-center"><b>{{ result['chi'][key]['trad'] }}</b>   {{ result['chi'][key]['simp'] }}</p>
 										<p class="fs-4 text-center">{{ result['chi'][key]['py'] }}</p>
 									</div>
+									{% if result['chi'][key]['eng'] != 'nan' %}
 									<div class="col-lg col-sm-12 align-items-center ">
 										<p class="fs-5 text-center">Anglais</p>
 										<ol class="list-group list-group-numbered">
@@ -81,6 +82,8 @@
 											{% endfor %}
 										</ol>
 									</div>
+									{% endif %}
+									{% if result['chi'][key]['fra'] != 'nan' %}
 									<div class="col-lg col-sm-12 align-items-center ">
 										<p class="fs-5 text-center">Français</p>
 										<ol class="list-group list-group-numbered">
@@ -89,23 +92,81 @@
 											{% endfor %}
 										</ol>
 									</div>
+									{% endif %}
 								</div>
 							{% endfor %}
 						</div>
 						{% endif %}
 						<!-- caractère par caractère -->
-						<div class="row justify-content-center">
-							<div class="col-sm-10 col-lg">
-								{% if 'characters' in result %}
-									<p>{{ result['characters'] }}</p>
-								{% endif %}
-							</div>
+						{% if 'characters' in result %}
+						<div class="container-fluid p-3 my-2">
+							<h3 class="text-center m-2">Caractère par Caractère</h4>
+							{% for char in result['characters'] %}
+							{% for key in char.keys() %}
+								<div class="row border py-2 rounded mb-2">
+									<div class="col-lg col-sm-12 align-items-center ">
+										<p class="fs-1 text-center"><b>{{ char[key]['trad'] }}</b>   {{ char[key]['simp'] }}</p>
+										<p class="fs-4 text-center">{{ char[key]['py'] }}</p>
+									</div>
+									{% if char[key]['eng'] != 'nan' %}
+									<div class="col-lg col-sm-12 align-items-center ">
+										<p class="fs-5 text-center">Anglais</p>
+										<ol class="list-group list-group-numbered">
+											{% for def in char[key]['eng'][1:-1].split('/') %}
+												<li class="list-group-item">{{ def }}</li>
+											{% endfor %}
+										</ol>
+									</div>
+									{% endif %}
+									{% if char[key]['fra'] != 'nan' %}
+									<div class="col-lg col-sm-12 align-items-center ">
+										<p class="fs-5 text-center">Français</p>
+										<ol class="list-group list-group-numbered">
+											{% for def in char[key]['fra'][1:-1].split('/') %}
+												<li class="list-group-item">{{ def }}</li>
+											{% endfor %}
+										</ol>
+									</div>
+									{% endif %}
+								</div>
+							{% endfor %}
+							{% endfor %}
 						</div>
+						{% endif %}
 						<!-- dico japonais -->
 						{% if 'jap' in result %}
 						<div class="container-fluid p-3 my-2">
 							<h3 class="text-center m-2">Japonais</h4>
-							<p>{{ result['jap'] }}</p>
+							{% for res in result['jap'] %}
+							{% for key in res.keys() %}
+								<div class="row border py-2 rounded mb-2">
+									<div class="col-lg col-sm-12 align-items-center ">
+										<p class="fs-1 text-center">{{ res[key]['tokens'] }}</p>
+										<p class="fs-4 text-center">{{ ", ".join(res[key]['readings'].split('/')) }}</p>
+									</div>
+									{% if res[key]['eng'] != 'nan' %}
+									<div class="col-lg col-sm-12 align-items-center ">
+										<p class="fs-5 text-center">Anglais</p>
+										<ol class="list-group list-group-numbered">
+											{% for def in res[key]['eng'].split('/') %}
+												<li class="list-group-item">{{ def }}</li>
+											{% endfor %}
+										</ol>
+									</div>
+									{% endif %}
+									{% if res[key]['fra'] != 'nan' %}
+									<div class="col-lg col-sm-12 align-items-center ">
+										<p class="fs-5 text-center">Français</p>
+										<ol class="list-group list-group-numbered">
+											{% for def in res[key]['fra'].split('/') %}
+												<li class="list-group-item">{{ def }}</li>
+											{% endfor %}
+										</ol>
+									</div>
+									{% endif %}
+								</div>
+							{% endfor %}
+							{% endfor %}
 						</div>
 						{% endif %}
 						<!-- dico coréen -->
@@ -135,6 +196,10 @@
 							</div>
 						</div>
 						{% endif %}
+						<!-- petite ligne pour démarquer les différents résultats -->
+						{% if result != results[-1] %}
+						<div class="container-fluid p-3 my-2 border-bottom border-black"></div>
+						{% endif %}
 					{% endfor %}
 				{% endif %}
 			</div>			  
@@ -145,7 +210,7 @@
 		<br />
 		<br />
 		<!-- pied de page -->
-		<footer class="d-flex flex-wrap justify-content-between py-4 border-top">
+		<footer class="d-flex flex-wrap justify-content-between py-4 bottom-0 border-top bg-light">
 			<div class="col-md-1 d-flex align-items-center"></div>
 			<div class="col-md-4 d-flex align-items-center">
 				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-incognito me-1" viewBox="0 0 16 16">
