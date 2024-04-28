@@ -63,143 +63,145 @@
 			<div class="container-lg justify-content-center p-3 my-4 bg-light rounded" id="results">
 				{% if results %}
 					{% for result in results %}
-						<!-- dico chinois -->
-						{% if 'chi' in result %}
-						<div class="container-fluid p-3 my-2">
-							<h3 class="text-center m-2">Chinois</h4>
-							{% for key in result['chi'].keys() %}
-								<div class="row border py-2 rounded mb-2">
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-1 text-center"><b>{{ result['chi'][key]['trad'] }}</b>   {{ result['chi'][key]['simp'] }}</p>
-										<p class="fs-4 text-center">{{ result['chi'][key]['py'] }}</p>
+						<div id="{{ loop.index0 }}">
+							<!-- dico chinois -->
+							{% if 'chi' in result %}
+							<div class="container-fluid p-3 my-2">
+								<h3 class="text-center m-2">Chinois</h3>
+								{% for key in result['chi'].keys() %}
+									<div class="row border py-2 rounded mb-2">
+										<div class="col-lg col-sm-12 align-items-center">
+											<p class="fs-1 text-center"><b>{{ result['chi'][key]['trad'] }}</b>   {{ result['chi'][key]['simp'] }}</p>
+											<p class="fs-4 text-center">{{ result['chi'][key]['py'] }}</p>
+										</div>
+										{% if result['chi'][key]['eng'] != 'nan' %}
+										<div class="col-lg col-sm-12 align-items-center">
+											<p class="fs-5 text-center">Anglais</p>
+											<ol class="list-group list-group-numbered">
+												{% for def in result['chi'][key]['eng'][1:-1].split('/') %}
+													<li class="list-group-item">{{ def }}</li>
+												{% endfor %}
+											</ol>
+										</div>
+										{% endif %}
+										{% if result['chi'][key]['fra'] != 'nan' %}
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-5 text-center">Français</p>
+											<ol class="list-group list-group-numbered">
+												{% for def in result['chi'][key]['fra'][1:-1].split('/') %}
+													<li class="list-group-item">{{ def }}</li>
+												{% endfor %}
+											</ol>
+										</div>
+										{% endif %}
 									</div>
-									{% if result['chi'][key]['eng'] != 'nan' %}
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Anglais</p>
-										<ol class="list-group list-group-numbered">
-											{% for def in result['chi'][key]['eng'][1:-1].split('/') %}
-												<li class="list-group-item">{{ def }}</li>
-											{% endfor %}
-										</ol>
+								{% endfor %}
+							</div>
+							{% endif %}
+							<!-- caractère par caractère -->
+							{% if 'characters' in result %}
+							<div class="container-fluid p-3 my-2">
+								<h3 class="text-center m-2">Caractère par Caractère</h3>
+								{% for char in result['characters'] %}
+								{% for key in char.keys() %}
+									<div class="row border py-2 rounded mb-2">
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-1 text-center"><b>{{ char[key]['trad'] }}</b>   {{ char[key]['simp'] }}</p>
+											<p class="fs-4 text-center">{{ char[key]['py'] }}</p>
+										</div>
+										{% if char[key]['eng'] != 'nan' %}
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-5 text-center">Anglais</p>
+											<ol class="list-group list-group-numbered">
+												{% for def in char[key]['eng'][1:-1].split('/') %}
+													<li class="list-group-item">{{ def }}</li>
+												{% endfor %}
+											</ol>
+										</div>
+										{% endif %}
+										{% if char[key]['fra'] != 'nan' %}
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-5 text-center">Français</p>
+											<ol class="list-group list-group-numbered">
+												{% for def in char[key]['fra'][1:-1].split('/') %}
+													<li class="list-group-item">{{ def }}</li>
+												{% endfor %}
+											</ol>
+										</div>
+										{% endif %}
 									</div>
-									{% endif %}
-									{% if result['chi'][key]['fra'] != 'nan' %}
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Français</p>
-										<ol class="list-group list-group-numbered">
-											{% for def in result['chi'][key]['fra'][1:-1].split('/') %}
-												<li class="list-group-item">{{ def }}</li>
-											{% endfor %}
-										</ol>
+								{% endfor %}
+								{% endfor %}
+							</div>
+							{% endif %}
+							<!-- dico japonais -->
+							{% if 'jap' in result %}
+							<div class="container-fluid p-3 my-2">
+								<h3 class="text-center m-2">Japonais</h3>
+								{% for res in result['jap'] %}
+								{% for key in res.keys() %}
+									<div class="row border py-2 rounded mb-2">
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-1 text-center">{{ res[key]['tokens'] }}</p>
+											<p class="fs-4 text-center">{{ ", ".join(res[key]['readings'].split('/')) }}</p>
+										</div>
+										{% if res[key]['eng'] != 'nan' %}
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-5 text-center">Anglais</p>
+											<ol class="list-group list-group-numbered">
+												{% for def in res[key]['eng'].split('/') %}
+													<li class="list-group-item">{{ def }}</li>
+												{% endfor %}
+											</ol>
+										</div>
+										{% endif %}
+										{% if res[key]['fra'] != 'nan' %}
+										<div class="col-lg col-sm-12 align-items-center ">
+											<p class="fs-5 text-center">Français</p>
+											<ol class="list-group list-group-numbered">
+												{% for def in res[key]['fra'].split('/') %}
+													<li class="list-group-item">{{ def }}</li>
+												{% endfor %}
+											</ol>
+										</div>
+										{% endif %}
 									</div>
-									{% endif %}
-								</div>
-							{% endfor %}
-						</div>
-						{% endif %}
-						<!-- caractère par caractère -->
-						{% if 'characters' in result %}
-						<div class="container-fluid p-3 my-2">
-							<h3 class="text-center m-2">Caractère par Caractère</h4>
-							{% for char in result['characters'] %}
-							{% for key in char.keys() %}
-								<div class="row border py-2 rounded mb-2">
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-1 text-center"><b>{{ char[key]['trad'] }}</b>   {{ char[key]['simp'] }}</p>
-										<p class="fs-4 text-center">{{ char[key]['py'] }}</p>
-									</div>
-									{% if char[key]['eng'] != 'nan' %}
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Anglais</p>
-										<ol class="list-group list-group-numbered">
-											{% for def in char[key]['eng'][1:-1].split('/') %}
-												<li class="list-group-item">{{ def }}</li>
-											{% endfor %}
-										</ol>
-									</div>
-									{% endif %}
-									{% if char[key]['fra'] != 'nan' %}
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Français</p>
-										<ol class="list-group list-group-numbered">
-											{% for def in char[key]['fra'][1:-1].split('/') %}
-												<li class="list-group-item">{{ def }}</li>
-											{% endfor %}
-										</ol>
-									</div>
-									{% endif %}
-								</div>
-							{% endfor %}
-							{% endfor %}
-						</div>
-						{% endif %}
-						<!-- dico japonais -->
-						{% if 'jap' in result %}
-						<div class="container-fluid p-3 my-2">
-							<h3 class="text-center m-2">Japonais</h4>
-							{% for res in result['jap'] %}
-							{% for key in res.keys() %}
-								<div class="row border py-2 rounded mb-2">
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-1 text-center">{{ res[key]['tokens'] }}</p>
-										<p class="fs-4 text-center">{{ ", ".join(res[key]['readings'].split('/')) }}</p>
-									</div>
-									{% if res[key]['eng'] != 'nan' %}
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Anglais</p>
-										<ol class="list-group list-group-numbered">
-											{% for def in res[key]['eng'].split('/') %}
-												<li class="list-group-item">{{ def }}</li>
-											{% endfor %}
-										</ol>
-									</div>
-									{% endif %}
-									{% if res[key]['fra'] != 'nan' %}
-									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Français</p>
-										<ol class="list-group list-group-numbered">
-											{% for def in res[key]['fra'].split('/') %}
-												<li class="list-group-item">{{ def }}</li>
-											{% endfor %}
-										</ol>
-									</div>
-									{% endif %}
-								</div>
-							{% endfor %}
-							{% endfor %}
-						</div>
-						{% endif %}
-						<!-- dico coréen -->
-						{% if 'kor' in result %}
-						<div class="container-fluid p-3 my-2">
-							<h3 class="text-center m-2">Coréen</h4>
-							<p>{{ result['kor'] }}</p>
-						</div>
-						{% endif %}
-						<!-- mots -->
-						{% if 'words' in result %}
-						<div class="container-fluid p-3 my-2">
-							<h4 class="text-center my-2">Words Containing</h4>
-							<div class="accordion" id="words">
-							{% for key, value in result['words'].items()|sort(attribute=0) %}
-								<div class="accordion-item">
-									<h5 class="accordion-header" id="heading{{key}}">
-										<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{key}}" aria-expanded="false" aria-controls="collapse{{key}}">mots de {{ key }} caractères</button>
-									</h5>
-									<div id="collapse{{key}}" class="accordion-collapse collapse" aria-labelledby="heading{{key}}" data-bs-parent="#words">
-										<div class="accordion-body">
-											{{ ', '.join(value) }}
+								{% endfor %}
+								{% endfor %}
+							</div>
+							{% endif %}
+							<!-- dico coréen -->
+							{% if 'kor' in result %}
+							<div class="container-fluid p-3 my-2">
+								<h3 class="text-center m-2">Coréen</h3>
+								<p>{{ result['kor'] }}</p>
+							</div>
+							{% endif %}
+							<!-- mots -->
+							{% if 'words' in result %}
+							<div class="container-fluid p-3 my-2">
+								<h3 class="text-center my-2">Words Containing</h3>
+								<div class="accordion" id="words">
+								{% for key, value in result['words'].items()|sort(attribute=0) %}
+									<div class="accordion-item">
+										<h5 class="accordion-header" id="heading{{key}}">
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{key}}" aria-expanded="false" aria-controls="collapse{{key}}">mots de {{ key }} caractères</button>
+										</h5>
+										<div id="collapse{{key}}" class="accordion-collapse collapse" aria-labelledby="heading{{key}}" data-bs-parent="#words">
+											<div class="accordion-body">
+												{{ ', '.join(value) }}
+											</div>
 										</div>
 									</div>
+								{% endfor %}
 								</div>
-							{% endfor %}
 							</div>
+							{% endif %}
+							<!-- petite ligne pour démarquer les différents résultats -->
+							{% if result != results[-1] %}
+							<div class="container-fluid p-3 my-2 border-bottom"></div>
+							{% endif %}
 						</div>
-						{% endif %}
-						<!-- petite ligne pour démarquer les différents résultats -->
-						{% if result != results[-1] %}
-						<div class="container-fluid p-3 my-2 border-bottom"></div>
-						{% endif %}
 					{% endfor %}
 				{% endif %}
 			</div>			  
