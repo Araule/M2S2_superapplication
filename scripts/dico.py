@@ -8,9 +8,9 @@ du chinois, du japonais et du coréen pour le dictionnaire
 Vous pouvez appeler le fichier comme ceci:
     $ python dico_cn.py [phrase ou mot]
 
-Ex:
-    $ python dico_cn.py 我來到北京 # chinois traditionnel
-    $ python dico_cn.py 我来到北京 # chinois simplifié
+Ex: j'adore lire
+    $ python dico_cn.py 我來到北京 # chinois traditionnel 
+    $ python dico_cn.py 我喜歡閱讀 # chinois simplifié
 """
 
 import sys
@@ -279,7 +279,7 @@ def main(sent: str) -> dict:
     cndict["fra"] = cndict["fra"].astype(str)
     cndict["eng"] = cndict["eng"].astype(str)
 
-    return infos(sent, cndict, cntype)
+    return infos(sent, cndict, cntype), cntype
 
 # if __name__ == "__main__":
 

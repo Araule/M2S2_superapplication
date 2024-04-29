@@ -10,7 +10,7 @@ from fastapi import FastAPI, Request
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
-from scripts import dico_cn
+from scripts import dico
 
 #=== les fonctions extérieures
 def util_get_infos(sentence: str):
@@ -20,7 +20,7 @@ def util_get_infos(sentence: str):
         sentence (str): la phrase rentrée par l'utilisateur, peut-être également
             un mot ou un caractère
     """
-    return dico_cn.main(sentence)
+    return dico.main(sentence)
 
 #=== initialisation de l'application
 app = FastAPI() # initialisation de l'app
@@ -46,6 +46,7 @@ async def root(request: Request):
 async def root(request: Request):
     form_data = await request.form() # récupère les valeurs du formulaire
     tokens = form_data.get('tokens') # valeur du champ name="tokens" dans le formulaire
-    infos = util_get_infos(tokens) # appel à la fonction extérieure pour gérer l'ajout dans la BDD
+    infos, cntype = util_get_infos(tokens) # appel à la fonction extérieure pour gérer l'ajout dans la BDD
     print(infos) # affiche sur le terminal pour le debuggage
-    return templates.TemplateResponse("index.html", {"request": request, "results": infos})
+    print("TYPE/", cntype)
+    return templates.TemplateResponse("index.html", {"request": request, "results": infos, "cntype": cntype})

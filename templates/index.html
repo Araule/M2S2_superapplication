@@ -10,7 +10,7 @@
 		<title>DWJ - Dictionnaire chinois français anglais</title>
 		<link href="{{ url_for('static', path='/translate.svg') }}" rel="shortcut icon" type="image/vnd.microsoft.icon">
 	</head>
-	<body">
+	<body>
 		<!-- barre de navigation -->
 		<nav class="navbar navbar-expand-lg bg-body-tertiary bg-light py-3">
 			<div class="container-fluid"> <!-- la barre prend toute la place -->
@@ -63,30 +63,19 @@
 					<span >Loading...</span>
 				  </div>
 				</div>
-			  </div>
+			</div>
 			<!-- les résultats -->
 			{% if results %}
 				<!-- les boutons pour aller à une entrée rapidement -->
 				<div class="container-lg justify-content-center">
 					<div class="container p-3 my-2">
-						<!-- en chinois simplifié -->
 						<div class="row justify-content-center">
 							{% for result in results %}
 								<button class="col-lg-1 btn btn-light m-2" type="button">
 									<a class="link-underline-opacity-0 link-underline-opacity-0-hover link-dark" href="#{{ loop.index0 }}">
-										{{ result['chi'][0]['simp'] }}
+										{{ result['chi'][0][cntype] }}
 									</a>
 								</button>
-							{% endfor %}
-						</div>
-						<!-- en chinois classique -->
-						<div class="row justify-content-center m-2">
-							{% for result in results %}
-							<button class="col-lg-1 btn btn-light m-2" type="button">
-								<a class="link-underline-opacity-0 link-underline-opacity-0-hover link-dark" href="#{{ loop.index0 }}">
-									{{ result['chi'][0]['trad'] }}
-								</a>
-							</button>
 							{% endfor %}
 						</div>
 					</div>
