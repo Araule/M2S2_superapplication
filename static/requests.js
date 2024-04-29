@@ -1,3 +1,16 @@
+// Définir la fonction showloader() en dehors de la fonction $(document).ready()
+function showloader(loaderId) {
+    console.log('La fonction showloader est appelée avec l\'identifiant :', loaderId);
+
+    // Vérifier que l'élément du loader existe dans le document HTML
+    var loader = document.getElementById(loaderId);
+    if (loader) {
+        loader.style.display = 'block';
+    } else {
+        console.error("L'élément du loader n'existe pas dans le document HTML.");
+    }
+}
+
 $(document).ready(function(){
 
 	/* pour permettre de revenir en haut de la page avec un boutton */
@@ -26,27 +39,5 @@ $(document).ready(function(){
 	function backToTop() {
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
-	}
-	
-	// function showloader() {
-	// 	var loader = document.getElementById('loader');
-
-	// 	if (loader) {
-	// 		$("#loader").css("display", "block");
-	// 	} else {
-	// 		console.error("Loader element not found.");
-	// 	}
-	// }
-
-	// function receiveFA(vars) {
-	// 	return vars; // Ajout du point-virgule
-	// }
-
-	// /* Lecture dans une variable res */
-	// var res = receiveFA({results});
-	// /* Cacher le loader si des infos ont bien été renvoyées par Python */
-	// if (Object.keys(res).length > 0){
-	// 	$("#loader").css("display", "none");
-	// }
-
+	}	
 });
