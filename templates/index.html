@@ -60,9 +60,35 @@
 				Chargement...
 			</div>
 			<!-- les résultats -->
-			<div class="container-lg justify-content-center p-3 my-4 bg-light rounded" id="results">
-				{% if results %}
-					{% for result in results %}
+			{% if results %}
+				<!-- les boutons pour aller à une entrée rapidement -->
+				<div class="container-lg justify-content-center">
+					<div class="container p-3 my-2">
+						<!-- en chinois simplifié -->
+						<div class="row justify-content-center">
+							{% for result in results %}
+								<button class="col-lg-1 btn btn-light m-2" type="button">
+									<a class="link-underline-opacity-0 link-underline-opacity-0-hover link-dark" href="#{{ loop.index0 }}">
+										{{ result['chi'][0]['simp'] }}
+									</a>
+								</button>
+							{% endfor %}
+						</div>
+						<!-- en chinois classique -->
+						<div class="row justify-content-center m-2">
+							{% for result in results %}
+							<button class="col-lg-1 btn btn-light m-2" type="button">
+								<a class="link-underline-opacity-0 link-underline-opacity-0-hover link-dark" href="#{{ loop.index0 }}">
+									{{ result['chi'][0]['trad'] }}
+								</a>
+							</button>
+							{% endfor %}
+						</div>
+					</div>
+				</div>
+				{% for result in results %}
+					<!-- les résultats -->
+					<div class="container-lg justify-content-center p-3 my-4 bg-light rounded" id="results">
 						<div id="{{ loop.index0 }}">
 							<!-- dico chinois -->
 							{% if 'chi' in result %}
@@ -168,9 +194,10 @@
 									</div>
 								{% endfor %}
 								{% endfor %}
-							</div>
+								</div>
 							{% endif %}
 							<!-- dico coréen -->
+							{% if 'kor' in result %}
 							{% if 'kor' in result %}
 							<div class="container-fluid p-3 my-2">
 								<h3 class="text-center m-2">Coréen</h3>
@@ -280,9 +307,9 @@
 							<div class="container-fluid p-3 my-2 border-bottom"></div>
 							{% endif %}
 						</div>
-					{% endfor %}
-				{% endif %}
-			</div>			  
+					</div>	
+				{% endfor %}
+			{% endif %}			  
 		</div>
 		{% endblock %}
 		<br />
