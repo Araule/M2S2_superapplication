@@ -32,19 +32,53 @@ def ko_main(query_keyword: str):
     dico={}
     r = search_hanja_dic(query_keyword)
     for entry in r:
-        link = regex.sub(r".*?href=\"(.*?)\">.*", r"\1", entry)
+        # link = regex.sub(r".*?href=\"(.*?)\">.*", r"\1", entry)
         hanja = regex.sub(r".*?<a.*?>(.*?)<\/a>.*", r"\1", entry)
         sens = regex.sub(r".*?<\/a><\/td>", "", entry)
         s = regex.findall(r"<td.*?>.*?<\/td>", sens)
         if len(s)>1:
             lecture = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[0])
-            a = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[1])
-            sens = f"{lecture}, {a}"
+            anglais = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[1])
+            dico_sens = {lecture.strip(): anglais.strip()}
         else:
             sens = regex.sub(r"<td.*?>(.*?)\(?\d?\d?\)?<\/td>", r"\1", s[0])
-        dico.update({hanja:(link, sens.strip())})
-
-    return dico
+            liste_mots = sens.split(",")
+            dico_sens = {}
+            lecture = []
+            trad = []
+            for mot in liste_mots:
+                if mot.isascii():
+                    trad.append(mot.strip())
+                else:
+                    lecture.append(mot.strip())
+            for m, t in zip(lecture, trad):
+                dico_sens.update({m:t})
+                
+            
+            # liste_sens = [lecture, trad]
+        # Si l'entrée correspond à la requête et n'est pas encore dans le dico
+        if hanja == query_keyword and "main" not in dico:
+            dico.update({"main":{hanja:dico_sens}})
+        # S'il y a déjà une entrée de la requête dans le dico, on ajoute les sens supp à la liste
+        elif hanja == query_keyword and "main" in dico :
+            dico["main"][hanja].update(dico_sens)
+        # Si l'entrée ne correspond pas à la requête et qu'aucune entrée ne correspondant pas à la requête est dans le dico
+        elif len(query_keyword) == 1:
+            if hanja != query_keyword and "others" not in dico:
+                dico.update({"others":{hanja:dico_sens}})
+            elif hanja != query_keyword and "others" in dico and hanja not in dico["others"]: 
+                dico['others'].update({hanja:dico_sens})
+            else:
+                dico['others'][hanja].update(dico_sens)
+        else :
+            if hanja != query_keyword and "xcomponent" not in dico:
+                dico.update({"xcomponent":{hanja:dico_sens}})
+            elif hanja != query_keyword and "xcomponent" in dico and hanja not in dico["xcomponent"]: 
+                dico['xcomponent'].update({hanja:dico_sens})
+            else:
+                dico['xcomponent'][hanja].update(dico_sens)
+    sorted_keys = sorted(dico.keys())
+    return {k: dico[k] for k in sorted_keys}
 
 
 #=== partie Florian
