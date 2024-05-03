@@ -7,14 +7,14 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 		<script src="{{ url_for('static', path='/requests.js') }}"></script>
-		<title>About - Dictionnaire chinois français anglais</title>
+		<title>About - Chinese French English Dictionary</title>
 		<link href="{{ url_for('static', path='/translate.svg') }}" rel="shortcut icon" type="image/vnd.microsoft.icon">
 	</head>
 	<body>
 		<!-- barre de navigation -->
 		<nav class="navbar navbar-expand-lg bg-body-tertiary bg-light py-3">
 			<div class="container-fluid"> <!-- la barre prend toute la place -->
-				<a class="navbar-brand" href="{{ url_for('root')}}">Dictionnaire DWJ</a>
+				<a class="navbar-brand" href="{{ url_for('root')}}">DWJ Dictionary</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -69,14 +69,25 @@
                     </div>
                 </div>
                 <div class="row border rounded p-3 m-4">
-                    <div class="col-lg-4 col-sm-12 align-items-center">
-                        <img src = "../static/Florian.jpeg" alt="Emoji Flo" class="rounded-img" />
+                    <div class="col-lg-4 col-sm-12 align-items-center" id="image-container-flo">
+						<img src = "../static/Florian.jpeg" alt="Emoji Flo" class="rounded-img" />
+						<div  class="container-lg p-3 my-4 bg-light rounded" id="loader-flo">
+							<div class="d-flex justify-content-center">
+								<div class="spinner-border" role="status">
+									<!-- <span class="visually-hidden">Loading...</span> -->
+								<span >Loading...</span>
+							  </div>
+							</div>
+						</div>
                     </div>
                     <div class="col-lg-8 col-sm-12 align-items-center vertical">
                         <p class="fs-5 fw-bold text-center mb-2">Florian Jacquot</p>
                         <p>
-                            Blah
+                            Je crois que j'ai une haine viscérale pour le travail sur le web. Je n'y comprends pas grand chose, et travailler sur le visuel est au-delà de mes capacités (cf. mon sublime loader que j'ai remis ici pour qu'il ne soit pas perdu à tout jamais...). Heureusement, j'ai deux ingénieures web dans mon groupe qui ont permis la naissance de cette oeuvre.
                         </p>
+						<p>
+							I think I have a visceral hatred for working on the web. I don't understand much about it, and working on visuals is beyond my capabilities (cf. my extraordinary loader, which I've put back here so it won't be lost forever...). Fortunately, I have two web engineers in my group who have made this work possible. 
+						</p>
                     </div>
                 </div>
             </div>

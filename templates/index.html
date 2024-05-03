@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 	<head>
 		<meta charset="utf-8">
 		<link href="{{ url_for('static', path='/style.css') }}" rel="stylesheet">
@@ -7,14 +7,14 @@
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 		<script src="{{ url_for('static', path='/requests.js') }}"></script>
-		<title>DWJ - Dictionnaire chinois français anglais</title>
+		<title>DWJ - Chinese French English Dictionary</title>
 		<link href="{{ url_for('static', path='/translate.svg') }}" rel="shortcut icon" type="image/vnd.microsoft.icon">
 	</head>
 	<body>
-		<!-- barre de navigation -->
+		<!-- navigation bar -->
 		<nav class="navbar navbar-expand-lg bg-body-tertiary bg-light py-3">
-			<div class="container-fluid"> <!-- la barre prend toute la place -->
-				<a class="navbar-brand" href="{{ url_for('root')}}">Dictionnaire DWJ</a>
+			<div class="container-fluid"> <!-- the bar takes up all the space -->
+				<a class="navbar-brand" href="{{ url_for('root')}}">DWJ Dictionary</a>
 				<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
 					<span class="navbar-toggler-icon"></span>
 				</button>
@@ -30,20 +30,20 @@
 				</div>
 			</div>
 		</nav>
-		<!-- boutton pour revenir en haut de la page -->
+		<!-- button to go back to the top of the page -->
 		<button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
 			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-up" viewBox="0 0 16 16">
 				<path fill-rule="evenodd" d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5"/>
 			</svg>
 		</button>
-		<!-- partie principale de la page -->
+		<!-- main part of the page -->
 		{% block content %}
 		<div class="container-fluid">
 			<h1 class="text-center m-4">Research</h1>
-			<!-- barre de recherche -->
+			<!-- search bar -->
 			<div class="container-lg my-4">
 				<form class="d-flex justify-content-between align-items-center" method="POST" action="/" onsubmit="showloader('loader')">
-					<input class="form-control me-2" type="text" placeholder="Votre mot ou votre phrase" name="tokens" id="tokens">
+					<input class="form-control me-2" type="text" placeholder="Your word or phrase" name="tokens" id="tokens">
 					<button type="submit" class="btn btn-success">
 						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
 							<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
@@ -51,11 +51,11 @@
 					</button>
 				</form>
 			</div>
-			<!-- tuto qui va laisser place à loader ou results -->
+			<!-- tutorial that will disappear on the results page -->
 			<div class="container-lg p-3 my-4 bg-light rounded" id="tuto">
-				Tuto à faire disparaître sur page de résultats
+				Tutorial to be removed on results page
 			</div>
-			<!-- loader qui apparait le temps que la page charge les résultats -->
+			<!-- loader that appears while the page loads the results -->
 			<div  class="container-lg p-3 my-4 bg-light rounded" id="loader">
 				<div class="d-flex justify-content-center">
 				  <div class="spinner-border" role="status">
@@ -64,9 +64,9 @@
 				  </div>
 				</div>
 			</div>
-			<!-- les résultats -->
+			<!-- the results -->
 			{% if results %}
-				<!-- les boutons pour aller à une entrée rapidement -->
+				<!-- the buttons to quickly go to an entry -->
 				<div class="container-lg justify-content-center">
 					<div class="container p-3 my-2">
 						<div class="row justify-content-center">
@@ -81,13 +81,13 @@
 					</div>
 				</div>
 				{% for result in results %}
-					<!-- les résultats -->
+					<!-- the results -->
 					<div class="container-lg justify-content-center p-3 my-4 bg-light rounded" id="results">
 						<div id="{{ loop.index0 }}">
-							<!-- dico chinois -->
+							<!-- Chinese dictionary -->
 							{% if 'chi' in result %}
 							<div class="container-fluid p-3 my-2">
-								<h3 class="text-center m-2">Chinois</h3>
+								<h3 class="text-center m-2">Chinese</h3>
 								{% for key in result['chi'].keys() %}
 									<div class="row border py-2 rounded mb-2">
 										<div class="col-lg col-sm-12 align-items-center">
@@ -96,7 +96,7 @@
 										</div>
 										{% if result['chi'][key]['eng'] != 'nan' %}
 										<div class="col-lg col-sm-12 align-items-center">
-											<p class="fs-5 text-center">Anglais</p>
+											<p class="fs-5 text-center">English</p>
 											<ol class="list-group list-group-numbered">
 												{% for def in result['chi'][key]['eng'][1:-1].split('/') %}
 													<li class="list-group-item">{{ def }}</li>
@@ -106,7 +106,7 @@
 										{% endif %}
 										{% if result['chi'][key]['fra'] != 'nan' %}
 										<div class="col-lg col-sm-12 align-items-center ">
-											<p class="fs-5 text-center">Français</p>
+											<p class="fs-5 text-center">French</p>
 											<ol class="list-group list-group-numbered">
 												{% for def in result['chi'][key]['fra'][1:-1].split('/') %}
 													<li class="list-group-item">{{ def }}</li>
@@ -118,10 +118,10 @@
 								{% endfor %}
 							</div>
 							{% endif %}
-							<!-- caractère par caractère -->
+							<!-- character by character -->
 							{% if 'characters' in result %}
 							<div class="container-fluid p-3 my-2">
-								<h3 class="text-center m-2">Caractère par Caractère</h3>
+								<h3 class="text-center m-2">Character by Character</h3>
 								{% for char in result['characters'] %}
 								{% for key in char.keys() %}
 									<div class="row border py-2 rounded mb-2">
@@ -131,7 +131,7 @@
 										</div>
 										{% if char[key]['eng'] != 'nan' %}
 										<div class="col-lg col-sm-12 align-items-center ">
-											<p class="fs-5 text-center">Anglais</p>
+											<p class="fs-5 text-center">English</p>
 											<ol class="list-group list-group-numbered">
 												{% for def in char[key]['eng'][1:-1].split('/') %}
 													<li class="list-group-item">{{ def }}</li>
@@ -141,7 +141,7 @@
 										{% endif %}
 										{% if char[key]['fra'] != 'nan' %}
 										<div class="col-lg col-sm-12 align-items-center ">
-											<p class="fs-5 text-center">Français</p>
+											<p class="fs-5 text-center">French</p>
 											<ol class="list-group list-group-numbered">
 												{% for def in char[key]['fra'][1:-1].split('/') %}
 													<li class="list-group-item">{{ def }}</li>
@@ -154,10 +154,10 @@
 								{% endfor %}
 							</div>
 							{% endif %}
-							<!-- dico japonais -->
+							<!-- Japanese dictionary -->
 							{% if 'jap' in result %}
 							<div class="container-fluid p-3 my-2">
-								<h3 class="text-center m-2">Japonais</h3>
+								<h3 class="text-center m-2">Japanese</h3>
 								{% for res in result['jap'] %}
 								{% for key in res.keys() %}
 									<div class="row border py-2 rounded mb-2">
@@ -167,7 +167,7 @@
 										</div>
 										{% if res[key]['eng'] != 'nan' %}
 										<div class="col-lg col-sm-12 align-items-center ">
-											<p class="fs-5 text-center">Anglais</p>
+											<p class="fs-5 text-center">English</p>
 											<ol class="list-group list-group-numbered">
 												{% for def in res[key]['eng'].split('/') %}
 													<li class="list-group-item">{{ def }}</li>
@@ -177,7 +177,7 @@
 										{% endif %}
 										{% if res[key]['fra'] != 'nan' %}
 										<div class="col-lg col-sm-12 align-items-center ">
-											<p class="fs-5 text-center">Français</p>
+											<p class="fs-5 text-center">French</p>
 											<ol class="list-group list-group-numbered">
 												{% for def in res[key]['fra'].split('/') %}
 													<li class="list-group-item">{{ def }}</li>
@@ -190,10 +190,10 @@
 								{% endfor %}
 								</div>
 							{% endif %}
-							<!-- dico coréen -->
+							<!-- Korean dictionary -->
 							{% if 'kor' in result %}
 							<div class="container-fluid p-3 my-2">
-								<h3 class="text-center m-2">Coréen</h3>
+								<h3 class="text-center m-2">Korean</h3>
 								{% for res, dico in result['kor'].items() %}
 								{% if res == "main" %}
 								{% for hanja, dico_ko_en in dico.items() %}
@@ -205,7 +205,7 @@
 									</div>
 									{% if en != '' %}
 									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Anglais</p>
+										<p class="fs-5 text-center">English</p>
 										<ol class="list-group list-group-numbered">
 											{% for def in en.split(';') %}
 												<li class="list-group-item">{{ def }}</li>
@@ -226,7 +226,7 @@
 									</div>
 									{% if en != '' %}
 									<div class="col-lg col-sm-12 align-items-center ">
-										<p class="fs-5 text-center">Anglais</p>
+										<p class="fs-5 text-center">English</p>
 										<ol class="list-group list-group-numbered">
 											{% for def in en.split(';') %}
 												<li class="list-group-item">{{ def }}</li>
@@ -256,7 +256,7 @@
 													</div>
 													{% if en != '' %}
 														<div class="col-lg col-sm-12 align-items-center ">
-															<p class="fs-5 text-center">Anglais</p>
+															<p class="fs-5 text-center">English</p>
 															<ol class="list-group list-group-numbered">
 																{% for def in en.split(';') %}
 																	<li class="list-group-item">{{ def }}</li>
@@ -275,7 +275,7 @@
 								{% endfor %}
 							</div>
 							{% endif %}
-							<!-- mots -->
+							<!-- words -->
 							{% if 'words' in result %}
 							<div class="container-fluid p-3 my-2">
 								<h3 class="text-center my-2">Words Containing</h3>
@@ -283,7 +283,7 @@
 								{% for key, value in result['words'].items()|sort(attribute=0) %}
 									<div class="accordion-item">
 										<h5 class="accordion-header" id="heading{{key}}">
-											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{key}}" aria-expanded="false" aria-controls="collapse{{key}}">mots de {{ key }} caractères</button>
+											<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{key}}" aria-expanded="false" aria-controls="collapse{{key}}">words of {{ key }} characters</button>
 										</h5>
 										<div id="collapse{{key}}" class="accordion-collapse collapse" aria-labelledby="heading{{key}}" data-bs-parent="#words">
 											<div class="accordion-body">
@@ -295,7 +295,7 @@
 								</div>
 							</div>
 							{% endif %}
-							<!-- petite ligne pour démarquer les différents résultats -->
+							<!-- small line to separate the different results -->
 							{% if result != results[-1] %}
 							<div class="container-fluid p-3 my-2 border-bottom"></div>
 							{% endif %}
@@ -309,7 +309,7 @@
 		<br />
 		<br />
 		<br />
-		<!-- pied de page -->
+		<!-- footer -->
 		<footer class="d-flex flex-wrap justify-content-between py-4 bottom-0 border-top bg-light">
 			<div class="col-md-1 d-flex align-items-center"></div>
 			<div class="col-md-4 d-flex align-items-center">
@@ -318,7 +318,7 @@
 				</svg>
 				<span class="mb-3 mb-md-0 text-body-secondary">Darenne, Wallet &amp; Jacquot</span>
 			</div>
-		
+
 			<ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
 				<li class="nav-item"><a href="{{ url_for('root')}}" class="nav-link px-2 text-body-secondary">Home</a></li>
 				<li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link px-2 text-body-secondary">About</a></li>
