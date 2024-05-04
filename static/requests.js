@@ -31,8 +31,6 @@ $(document).ready(function(){
 		$('footer').css('bottom', 'auto');
 		$('footer').css('width', 'auto');
 	}
-
-	// $('body').css('padding-bottom', footerHeight);
 	
 	/* pour permettre de revenir en haut de la page avec un boutton */
 	/* en tout honnêteté, le code a été trouvé sur internet */
