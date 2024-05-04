@@ -9,6 +9,9 @@ function showloader(loaderId) {
 		// Masquez le tutoriel
 		const tutorial = document.getElementById('tuto');
 		tutorial.style.display = 'none';
+		// Masquez l'erreur
+		const erreur = document.getElementById('erreur-input');
+		erreur.style.display = 'none';
 	} else {
 		console.error("L'élément du loader n'existe pas dans le document HTML.");
 	}
