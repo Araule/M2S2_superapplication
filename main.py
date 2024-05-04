@@ -11,7 +11,6 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from scripts import dico
-import random
 import regex
 
 #=== les fonctions extérieures
@@ -46,13 +45,17 @@ async def root(request: Request):
 
 @app.post("/", response_class=HTMLResponse)
 async def root(request: Request):
-    form_data = await request.form() # récupère les valeurs du formulaire
-    tokens = form_data.get('tokens') # valeur du champ name="tokens" dans le formulaire
+    # on récupère les valeurs du formulaire
+    form_data = await request.form() 
+    tokens = form_data.get('tokens') # valeur du champ name 'tokens' dans le formulaire
     
     # on vérifie que ce soit bien du chinois
     if not regex.match(r"[\p{Han}\p{Bopomofo}]+", tokens, regex.UNICODE):
+        
+        # en cas d'erreur, il y aura un message pour l'utilisateur
         return templates.TemplateResponse("index.html", {"request": request, "error": "not chinese"}) # renvoie une liste vide
     
+    # sinon, on continue
     infos, cntype = util_get_infos(tokens) # appel à la fonction extérieure pour gérer l'ajout dans la BDD
     print(infos) # affiche sur le terminal pour le debuggage
     print("TYPE/", cntype)
