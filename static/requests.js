@@ -19,11 +19,25 @@ function showloader(loaderId) {
 
 $(document).ready(function(){
 
+	var windowHeight = $(window).height();
+	var documentHeight = $(document).height();	
+	
+	if (documentHeight <= windowHeight) {
+		$('footer').css('position', 'fixed');
+		$('footer').css('bottom', '0');
+		$('footer').css('width', '100%');
+	} else {
+		$('footer').css('position', 'relative');
+		$('footer').css('bottom', 'auto');
+		$('footer').css('width', 'auto');
+	}
+
+	// $('body').css('padding-bottom', footerHeight);
+	
 	/* pour permettre de revenir en haut de la page avec un boutton */
 	/* en tout honnêteté, le code a été trouvé sur internet */
 	// get the button
 	let mybutton = document.getElementById("btn-back-to-top");
-
 	// when the user scrolls down 20px from the top of the document, show the button
 	function scrollFunction() {
 		if (

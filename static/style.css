@@ -3,6 +3,7 @@ body {
 	background-image: url("recueil_des_traditions_de_jadis_et_de_naguere_kokon_chomon_ju_epoque_edo_1603-1868_c_paris_musees-musee_cernuschi_fond_1.png");
 	background-position: top;
 	background-size: cover;
+	position: relative;
 }
 
 /* style du boutton qui permet de revenir en haut de la page */
