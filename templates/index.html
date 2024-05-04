@@ -52,6 +52,7 @@
 				</form>
 			</div>
 			<!-- tutorial that will disappear on the results page -->
+			{% macro render_tutorial() %}
 			<div class="container-lg p-3 my-4 bg-light rounded" id="tuto" {% if results %}style="display: none;"{% endif %}>
 				<p>
 					Welcome to DWJ, your ultimate tool for unidirectional Chinese to Korean-Japanese-English-French translation. This powerful dictionary allows you to find English and French meanings, as well as Japanese and Korean equivalents of any Chinese words.
@@ -71,6 +72,12 @@
 					With DWJ, you can broaden your language skills and deepen your understanding of Chinese, Korean, Japanese, English, and French. Start exploring now!
 				</p>
 			</div>
+			{% endmacro %}
+
+			{% if not error %}
+				{{ render_tutorial() }}
+			{% endif %}
+
 			<!-- loader that appears while the page loads the results -->
 			<div  class="container-lg p-3 my-4 bg-light rounded" id="loader">
 				<div class="d-flex justify-content-center">
@@ -317,6 +324,12 @@
 						</div>
 					</div>	
 				{% endfor %}
+			{% elif error %}
+				<div class="alert alert-warning container col-8" role="alert">
+					<h4 class="alert-heading">Warning!</h4>
+					<p>Please enter a valid <strong>Chinese word or phrase</strong>.</p>
+				</div>
+				{{ render_tutorial() }}
 			{% endif %}		  
 		</div>
 		{% endblock %}

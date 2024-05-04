@@ -262,9 +262,9 @@ def main(sent: str) -> dict:
         sur le chinois, le coréen et le japonais
     """
 
-    # on vérifie que ce soit bien du chinois
-    if not regex.match(r"[\p{Han}\p{Bopomofo}]+", sent, regex.UNICODE):
-        return [] # renvoie une liste vide
+    # # on vérifie que ce soit bien du chinois
+    # if not regex.match(r"[\p{Han}\p{Bopomofo}]+", sent, regex.UNICODE):
+    #     return [] # renvoie une liste vide
 
     # on vérifie si les caractères sont en chinois simplifié ou en chinois classique
     simplified_sent = HanziConv.toSimplified(sent)
