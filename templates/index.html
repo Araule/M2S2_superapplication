@@ -52,8 +52,24 @@
 				</form>
 			</div>
 			<!-- tutorial that will disappear on the results page -->
-			<div class="container-lg p-3 my-4 bg-light rounded" id="tuto">
-				Tutorial to be removed on results page
+			<div class="container-lg p-3 my-4 bg-light rounded" id="tuto" {% if results %}style="display: none;"{% endif %}>
+				<p>
+					Welcome to DWJ, your ultimate tool for unidirectional Chinese to Korean-Japanese-English-French translation. This powerful dictionary allows you to find English and French meanings, as well as Japanese and Korean equivalents of any Chinese words.
+				</p>
+				<p>
+					To get started, simply enter any traditional or simplified Chinese text in the search box, and let DWJ work its magic. Our extensive database will provide you with accurate and relevant results in no time &#x1F440;.
+				</p>
+				<p>
+					Here's a few example searches to give you a taste of what DWJ can do.
+				</p>
+				<ul class="">
+					<li>A word: <a href="" class="example-link" onclick="showloader('loader')">食</a></li>
+					<li>A sentence in traditional chinese: <a href="" class="example-link" onclick="showloader('loader')">我喜歡閱讀</a></li>
+					<li>A sentence in simplified chinese: <a href="" class="example-link" onclick="showloader('loader')">我來到北京</a></li>
+				</ul>
+				<p>
+					With DWJ, you can broaden your language skills and deepen your understanding of Chinese, Korean, Japanese, English, and French. Start exploring now!
+				</p>
 			</div>
 			<!-- loader that appears while the page loads the results -->
 			<div  class="container-lg p-3 my-4 bg-light rounded" id="loader">
@@ -323,6 +339,6 @@
 				<li class="nav-item"><a href="{{ url_for('about') }}" class="nav-link px-2 text-body-secondary">About</a></li>
 			</ul>
 			<div class="col-md-1 d-flex align-items-center"></div>
-		</footer>
+		</footer>		
 	</body>
 </html>

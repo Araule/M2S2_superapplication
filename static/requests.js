@@ -1,12 +1,14 @@
-// Définir la fonction showloader() en dehors de la fonction $(document).ready()
+// fonction pour afficher le loader
 function showloader(loaderId) {
 	console.log('La fonction showloader est appelée avec l\'identifiant :', loaderId);
 
-	// Vérifier que l'élément du loader existe dans le document HTML
+	// Vérification que l'élément du loader existe dans le document HTML
 	var loader = document.getElementById(loaderId);
 	if (loader) {
 		loader.style.display = 'block';
-
+		// Masquez le tutoriel
+		const tutorial = document.getElementById('tuto');
+		tutorial.style.display = 'none';
 	} else {
 		console.error("L'élément du loader n'existe pas dans le document HTML.");
 	}
@@ -40,5 +42,29 @@ $(document).ready(function(){
 	function backToTop() {
 		document.body.scrollTop = 0;
 		document.documentElement.scrollTop = 0;
-	}	
+	}
+
+
+    // Sélectionne tous les liens d'exemple du tuto
+    const exampleLinks = document.querySelectorAll('.example-link');
+
+    // Parcoure tous les liens d'exemple et ajoute un gestionnaire d'événements de clic
+    exampleLinks.forEach((link) => {
+        link.addEventListener('click', (event) => {
+            // Empêche le comportement par défaut du lien
+            event.preventDefault();
+
+            // Récupére la valeur du texte du lien
+            const searchTerm = event.target.textContent;
+
+            // Sélectionne l'entrée de recherche et définis sa valeur
+            const searchInput = document.getElementById('tokens');
+            searchInput.value = searchTerm;
+
+            // Soumet le formulaire
+            const searchForm = document.querySelector('form');
+            searchForm.submit();
+        });
+    });
+
 });
