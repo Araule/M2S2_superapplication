@@ -53,7 +53,15 @@ img.rounded-img {
 }
 
 .vertical {
-	padding-top: 8%;
+	padding: 5% 1%;
+}
+
+#no-space {
+	padding:2% 1%;
+}
+
+#vertical-img {
+	padding: 30% 0;
 }
 
   /* Safari */
