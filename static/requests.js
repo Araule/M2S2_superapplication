@@ -1,14 +1,15 @@
 // Définir la fonction showloader() en dehors de la fonction $(document).ready()
 function showloader(loaderId) {
-    console.log('La fonction showloader est appelée avec l\'identifiant :', loaderId);
+	console.log('La fonction showloader est appelée avec l\'identifiant :', loaderId);
 
-    // Vérifier que l'élément du loader existe dans le document HTML
-    var loader = document.getElementById(loaderId);
-    if (loader) {
-        loader.style.display = 'block';
-    } else {
-        console.error("L'élément du loader n'existe pas dans le document HTML.");
-    }
+	// Vérifier que l'élément du loader existe dans le document HTML
+	var loader = document.getElementById(loaderId);
+	if (loader) {
+		loader.style.display = 'block';
+
+	} else {
+		console.error("L'élément du loader n'existe pas dans le document HTML.");
+	}
 }
 
 $(document).ready(function(){

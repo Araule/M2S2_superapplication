@@ -11,6 +11,7 @@ from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
 from fastapi.responses import HTMLResponse
 from scripts import dico
+import random
 
 #=== les fonctions extérieures
 def util_get_infos(sentence: str):

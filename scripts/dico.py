@@ -39,6 +39,7 @@ def ko_main(query_keyword: str):
         if len(s)>1:
             lecture = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[0])
             anglais = regex.sub(r"<td.*?>(.*?)<\/td>", r"\1", s[1])
+            anglais = regex.sub(r"\(.*?\)", "", anglais)
             dico_sens = {lecture.strip(): anglais.strip()}
         else:
             sens = regex.sub(r"<td.*?>(.*?)\(?\d?\d?\)?<\/td>", r"\1", s[0])
@@ -48,6 +49,7 @@ def ko_main(query_keyword: str):
             trad = []
             for mot in liste_mots:
                 if mot.isascii():
+                    mot = regex.sub(r"\(.*?\)", "", mot)
                     trad.append(mot.strip())
                 else:
                     lecture.append(mot.strip())

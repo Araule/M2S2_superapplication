@@ -5,12 +5,6 @@ body {
 	background-size: cover;
 }
 
-/* nav.navbar {
-	width: 100%;
-	position: fixed;
-	top:0;
-} */
-
 /* style du boutton qui permet de revenir en haut de la page */
 #btn-back-to-top {
 	position: fixed;
@@ -20,32 +14,15 @@ body {
 	z-index: 1000;
 }
 
-/* style de notre loader
-div#loader{
-	display:none;
-} */
 
 footer {
-	/* position: fixed;
-	bottom: 0;
-	width: 100%;
-	background-color: white; */
 	z-index: 900;
 }
 
 /* Center the loader */
 #loader {
 	display: none;
-	border: 16px solid #f3f3f3;
-	border-radius: 50%;
-	border-top: 16px solid #ff7cf4;
-	width: 120px;
-	height: 120px;
-	-webkit-animation: spin 2s linear infinite; /* Safari */
-	animation: spin 2s linear infinite;
 }
-  
-
 
 img.rounded-img {
 	width: 350px;
