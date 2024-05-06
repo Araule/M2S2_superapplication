@@ -53,7 +53,7 @@ La police utilisée est une police fournie par Bootstrap et soutenue par tous le
 
 - Laura Darenne : dictionnaire chinois, design du site, de la partie chinoise et japonaise
 - Florian Jacquot : dictionnaire japonais, mise en place du loader, rédaction du tutoriel
-- Agathe Wallet : dictionnaire coréen, design du site et de la partie coréen, création des avatars
+- Agathe Wallet : dictionnaire coréen, design du site et de la partie coréenne, création des avatars
 
 
 
