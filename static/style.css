@@ -31,15 +31,18 @@ img.rounded-img {
 }
 
 .vertical {
-	padding: 5% 1%;
+	padding: 3%;
 }
 
-#no-space {
-	padding:2% 1%;
-}
 
-#vertical-img {
-	padding: 30% 0;
+.image-container {
+	position: relative;
+  }
+  
+.image-container img {
+	width: 90%;
+	padding-left: 10%;
+	height: auto;
 }
 
   /* Safari */
@@ -61,18 +64,6 @@ img.rounded-img {
 	height: 120px;
 	-webkit-animation: spin 2s linear infinite; /* Safari */
 	animation: spin 2s linear infinite;
-}
-
-#image-container-flo {
-	position: relative;
-  }
-  
-#image-container-flo img {
-	width: 100%;
-	height: auto;
-}
-  
-#loader-flo {
 	position: absolute;
 	top: 30%;
 	left: 30%;
