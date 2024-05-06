@@ -41,7 +41,7 @@ Nous avons un menu, reprenant le logo de notre dictionnaire. Celui-ci est cliqua
 
 Le site présente un fond coloré mais qui ne distrait pas l'oeil de l'utilisateur. Il s'agit d'une estampe japonaise tirée du Recueil des traditions de jadis et de nagère, exposé au Musée Cernuschi. Le contenu de la page est dans un cadre blanc aux contours arrondis, permettant de le faire contraster avec l'image de fond tout en gardant une certaine douceur.
 
-La police utilisée est une police fournie par Bootstrap et soutenue par tous les navigateurs. L'application s'adapte également à toute taille d'écran (ordinateur, tablette, téléphone, etc). On peut également zoomer ou dézoomer le contenu sans que cela n'impacte la mise en page ni l'expérience utilisateur (pas de scroll horizontal notamment).
+La police utilisée est une police fournie par Bootstrap et soutenue par tous les navigateurs. L'application s'adapte également à toute taille d'écran (ordinateur, tablette, téléphone, etc). On peut également zoomer ou dézoomer le contenu sans que cela n'impacte la mise en page ni l'expérience utilisateur (pas de scroll horizontal notamment). Le contenu complémentaire est également caché pour éviter un surplus d'informations sur la page mais sont accessibles en un clic via des accordéons.
 
 ### Liste des fonctionnalités
 
