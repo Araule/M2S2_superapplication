@@ -59,22 +59,3 @@ La police utilisée est une police fournie par Bootstrap et soutenue par tous le
 
 ## Les visuels
 
-
-
-
-# Évaluation API de Kenza, Liza, Alice et Shami
-
-## Installations des bibliothèques
-
-- Pb de compatibilité dans l'installation de libretranslate==1.5.6 avec la version de flask demandée
-- il manque pysolr dans le kit d'installation
-
-## Utilisation site
-→ Parfois des pb de loader toujours affiché alors que page chargée
-→ Historique des trad qui n'enregistre pas les trad
-→ Le logo renvoie simplement sur la page en cours
-→ Design un peu simpliste (fond blanc, pas de footer)
-→ Logo très chouette though
-→ S'adapte bien à la page
-→ Il manque la description de Shami et Alice
-→ Il pourrait être intéressant de voir quelle langue est détectée par les API pour la trad
