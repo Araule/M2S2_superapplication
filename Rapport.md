@@ -37,7 +37,7 @@ Nous avons choisi un design simple et efficace pour notre application.
 
 Nous avons décidé de nommer notre application "DWJ Dictionary", reprenant les initiales de nos 3 noms de famille. Le nom de notre application forme le logo de celle-ci.
 
-Nous avons un menu, reprenant le logo de notre dictionnaire. Celui-ci est cliquable et renvoie sur la page d'accueil, également accessible via le `Home`. Cette page d'accueil est la page sur laquelle tout se passe : l'utilisateur fait sa recherche et les résultats s'affiche sur cette page. Il y a également une seconde page accessible via cette barre de navigation : `About` présentant brièvement l'application et les personnes qui l'ont conçu.
+Nous avons un menu, reprenant le logo de notre dictionnaire. Celui-ci est cliquable et renvoie sur la page d'accueil, également accessible via le `Home`. Cette page d'accueil est la page sur laquelle tout se passe : l'utilisateur fait sa recherche et les résultats s'affiche sur cette page. Il y a également une seconde page accessible via cette barre de navigation : `About` présentant brièvement l'application et les personnes qui l'ont conçues.
 
 Le site présente un fond coloré mais qui ne distrait pas l'oeil de l'utilisateur. Il s'agit d'une estampe japonaise tirée du Recueil des traditions de jadis et de nagère, exposé au Musée Cernuschi. Le contenu de la page est dans un cadre blanc aux contours arrondis, permettant de le faire contraster avec l'image de fond tout en gardant une certaine douceur.
 
