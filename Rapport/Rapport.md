@@ -67,8 +67,8 @@ La police utilisée est une police fournie par Bootstrap et soutenue par tous le
 * Utilisation de la librairie **HanziConv** pour la conversion entre les caractères chinois simplifiés et traditionnels. 
 * Utilisation de la librairie **Jieba** pour la segmentation des phrases/mots en chinois entrée par l'utilisateur. 
 * Utilisation de **base de données** au format tsv:
-    * CFDICT: Base de données "chinois - français" [https://chine.in/mandarin/dictionnaire/CFDICT/]
-    * CC-DICT: Base de données "chinois - anglais" [https://www.mdbg.net/chinese/dictionary?page=cedict]
+    * CFDICT, Base de données "chinois - français" : [https://chine.in/mandarin/dictionnaire/CFDICT/]
+    * CC-DICT, Base de données "chinois - anglais" : [https://www.mdbg.net/chinese/dictionary?page=cedict]
 
 ### Conception : tâches et répartition
 
