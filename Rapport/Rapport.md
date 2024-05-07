@@ -66,7 +66,9 @@ La police utilisée est une police fournie par Bootstrap et soutenue par tous le
 * Utilisation de la librairie **Regex** pour la vérification de la validité des caractères chinois saisis par l'utilisateur. Regex est aussi utilisé pour extraire les informations pertinentes des résultats de la recherche de `Koreanhanja.app`.
 * Utilisation de la librairie **HanziConv** pour la conversion entre les caractères chinois simplifiés et traditionnels. 
 * Utilisation de la librairie **Jieba** pour la segmentation des phrases/mots en chinois entrée par l'utilisateur. 
-
+* Utilisation de **base de données** au format tsv:
+    * CFDICT: Base de données "chinois - français" [https://chine.in/mandarin/dictionnaire/CFDICT/]
+    * CC-DICT: Base de données "chinois - anglais" [https://www.mdbg.net/chinese/dictionary?page=cedict]
 
 ### Conception : tâches et répartition
 
@@ -74,7 +76,10 @@ La police utilisée est une police fournie par Bootstrap et soutenue par tous le
 - Florian Jacquot : dictionnaire japonais, mise en place du loader, rédaction du tutoriel
 - Agathe Wallet : dictionnaire coréen, design du site et de la partie coréenne, création des avatars
 
-
-
 ## Les visuels
 
+![page d'accueil](./home_1.jpg "page d'accueil")
+
+![page de résultats](./home_2.jpg "page de résultats")
+
+![page about](./about.jpg "page about")
