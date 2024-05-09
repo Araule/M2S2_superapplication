@@ -23,12 +23,12 @@ Voici quelques fonctionnalités que nous n'avons malheureusement pas pu intégre
 - [Naver](https://dict.naver.com/frkodict/#/search?query=%E9%9F%93) : ne propose pas de page multilingue, il est possible de chercher dans plusieurs langues, mais une page distincte est créée pour chaque langue, ce qui n'est pas pratique pour comparer les significations des caractères dans différentes langues. De même, la recherche de caractères hanja se fait uniquement en coréen.
 - [Daum 사전](https://dic.daum.net/search.do?q=%E9%9F%93) : principalement destiné aux locuteurs coréens.
 - [Dictionnaire de Hanja](https://koreanhanja.app/%e9%9f%93) : Permet de récupérer le sens des hanja ou de mots sino-coréen en anglais.
-- [Pleco](https://www.pleco.com) (téléphone): propose uniquement le chinois, mais est très bien conçu.
+- [Pleco](https://www.pleco.com) (téléphone): propose uniquement le chinois, mais est très bien conçu, dictionnaire gratuit mais avec la possibilité d'acheter et rajouter des dictionnaires sur l'application
 - [JCdic](http://www.jcdic.com/chinese_convert/index.php) : convertisseur chinois (classique, simplifié) - japonais
-- [Glosbe](https://glosbe.com/) : API avec des dictionnaires gratuits
-- [Make Me A Hanzi](https://github.com/skishore/makemeahanzi) : Apprendre à écrire un caractère chinois en respectant l'ordre des traits
-- [Hanyudic](https://github.com/guilhemmariotte/HanYuDic) et [FrCndict](https://github.com/Nilhcem/frcndict-android) : dictionnaires chinois-français
-- [Dictionnaire chinois](http://dict.cn/)
+- [Glosbe](https://glosbe.com/) : API avec des dictionnaires gratuits, actuellement non disponible à cause de trop grandes attaques DDOS
+- [Make Me A Hanzi](https://github.com/skishore/makemeahanzi) : permet d'afficher un caractère chinois en donnant l'ordre des traits
+- [Hanyudic](https://github.com/guilhemmariotte/HanYuDic) et [FrCndict](https://github.com/Nilhcem/frcndict-android) : dictionnaires chinois-français utilisant des base de données open-source
+- [Dictionnaire chinois](http://dict.cn/) : dictionnaire chinois en ligne
 - [KanjiAlive](https://kanjialive.com/) et [Kanji-Search](https://github.com/TashiiDesign/Kanji-Search) : apprendre à écrire un caractère en respectant l'ordre des traits japonais
 
 ### Ergonomie
