@@ -22,7 +22,7 @@ Pour lancer l'application, tapez simplement la commande suivante :
 ```bash
 uvicorn main:app --reload
 ```
-Vous pourrez ensuite cliquer sur l'url indiquée sur votre terminal.
+Vous pourrez ensuite cliquer sur l'url indiquée sur votre terminal (http://127.0.0.1:8000).
 
 Si vous avez déployé une autre application avant la nôtre, n'hésitez pas à faire un `CTRL+MAJ+R` pour que le cache de la précédente application soit vidé et que notre application s'affiche telle qu'elle a été conçue. Merci et bonne navigation !
 
