@@ -1,7 +1,5 @@
 # M2S2_superapplication
 
-Lien cahier des charges et notes : https://codimd.math.cnrs.fr/fKyJ-j26QqOfg0B82SRopg?both
-
 ## Présentation du projet
 Ce projet d'application a été développé dans le cadre du cours "Techniques Web" du Master en Traitement Automatique des Langues (TAL) à l'Inalco. L'objectif principal était de créer une application mettant en pratique les compétences acquises durant le cours, notamment la programmation avec FastAPI, HTML, CSS, JavaScript et jQuery. Nous avons donc décidé de concevoir un dictionnaire multilingue regroupant le chinois, le japonais et le coréen.
 
