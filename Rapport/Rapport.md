@@ -63,7 +63,7 @@ La police utilisée est une police fournie par Bootstrap et prise en charge par 
 	+ Utilisation de **StaticFiles** pour utiliser des fichiers dits statiques tels que des images, des feuilles de styles CSS et des fichiers JavaScript ;
 	+ Utilisation de **HTMLResponse** qui permet de renvoyer une réponse HTTP avec un corps HTML.
 * Utilisation de la bibliothèque **requests** pour les requêtes HTTP vers l'API externe de [koreanhanja.app](https://koreanhanja.app/).
-* Utilisation de la bibliothèque **Pandas** pour la manipulation des données. Elle a été utilisée pour manipuler les données récupérées depuis les bases de données du chinois et du japonais pour les mettre en forme avant de les envoyer vers l'interface utilisateur.
+* Utilisation de la bibliothèque **Pandas** pour la manipulation des données. Elle a été utilisée pour manipuler les données récupérées depuis les bases de données du chinois et du japonais pour les mettre en forme avant de les envoyer vers l'interface utilisateur. Nous l'avons préféré à d'autres modules pour son efficacité et sa rapidité.
 * Utilisation de la bibliothèque **re** (expressions régulières) pour la vérification de la validité des caractères chinois saisis par l'utilisateur. Les expressions régulières sont également utilisées pour extraire les informations pertinentes des résultats de la recherche de [koreanhanja.app](https://koreanhanja.app/).
 * Utilisation de la bibliothèque **HanziConv** pour la conversion entre les caractères chinois simplifiés et traditionnels.
 * Utilisation de la bibliothèque **Jieba** pour la segmentation des phrases/mots en chinois entrés par l'utilisateur.
