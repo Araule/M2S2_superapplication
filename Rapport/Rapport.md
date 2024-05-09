@@ -70,7 +70,7 @@ La police utilisée est une police fournie par Bootstrap et prise en charge par 
 * Utilisation de **bases de données** au format tsv conçues à partir des dictionnaires suivants :
 	+ [CFDICT](https://chine.in/mandarin/dictionnaire/CFDICT/), Base de données "chinois - français"
 	+ [CC-DICT](https://www.mdbg.net/chinese/dictionary?page=cedict), Base de données "chinois - anglais"
-	+ [JMdict-EDICT](http://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project), Base de données "japonais - anglais/français/allemand/russe/espagnol/hongrois/slovène/néerlandais"
+	+ [JMdict-EDICT](http://www.edrdg.org/wiki/index.php/JMdict-EDICT_Dictionary_Project), Base de données "japonais - anglais / français / allemand / russe / espagnol / hongrois / slovène / néerlandais"
 
 
 ### Conception : tâches et répartition
