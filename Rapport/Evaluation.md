@@ -16,7 +16,7 @@
 
 ## Observations faites lors du test
 ### Installation de l'application
-- Trop de packages dans le fichier requirement
+- Trop de packages dans le fichier `requirements.txt`
 - Problème de compatibilité avec `fastapi==0.111.0` et `googletrans==3.0.0`
 
 ### Lancement de l'application
