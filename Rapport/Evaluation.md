@@ -1,7 +1,7 @@
 # Évaluation du site de Alice, Kenza, Liza et Shami
 
 ## Attractivité (UI) /5
-**3/5** : Le design est un peu simple, rendant le site pas très accrocheur. Le logo est chouette et recherché, mais il n'est pas assez visible/gros. L'expérience utilisateur est intuitive et simple.
+**3/5** : Le design du site est un peu simple (fond blanc, pas de footer). Le logo est chouette et recherché, mais il n'est pas assez visible/gros. L'expérience utilisateur est intuitive et simple.
 
 ## Robustesse (tout fonctionne ou renvoie un message explicite) /5
 **3.5/5** : Une fois que l'application est installée, tout fonctionne. Cependant, l'installation de l'application a posé problème (nous n'avons pu l'installer correctement que sur 1 machine sur 3 et le `requirements.txt` a dû être modifié pour se faire). De plus, il faut installer de nombreuses bibliothèques Python avec des problèmes de compatibilité entre elles.
