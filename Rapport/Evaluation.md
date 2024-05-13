@@ -16,7 +16,8 @@
 
 ## utilisation du site
 - petit problème d'interactivité : la souris ne change pas quand on clique sur l'un des boutons (copier par exemple), on ne sait donc pas si l'action a fonctionné
-- ordi d'Agathe: lorsqu'on modifie une traduction et qu'on appuie sur la petite étoile, la traduction ne se met pas dans "mes traductions" (problème de cache ?); `LibreTranslate` ne marche pas du tout (alors que tout a été installé et que l'application a été lancé avec `start.sh`)
+- ordi d'Agathe: lorsqu'on modifie une traduction et qu'on appuie sur la petite étoile, la traduction ne se met pas dans "mes traductions" (problème de cache ?); `GoogleTrans` ne fonctionne pas du tout (alors que tout a été installé et que l'application a été lancé avec `start.sh`)
+- ordi Agathe : après avoir essayé de réinstaller dans un nouvel environnement virtuel, plus rien ne fonctionne.
 - ordi de Florian: tout marche correctement
 - ce serait bien d'avoir un module pour savoir si la langue d'origine a bien été detecté
 - peu de clics nécessaires
