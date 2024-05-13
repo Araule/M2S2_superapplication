@@ -1,9 +1,12 @@
 # Évaluation du site de Alice, Kenza, Liza et Shami
 
 ## installation
-Installations des bibliothèques
-Pb de compatibilité dans l'installation de libretranslate==1.5.6 avec la version de flask demandée
-il manque pysolr dans le kit d'installation
+- trop de packages dans le fichier requirement
+- problème de compatibilité avec `fastapi==0.111.0` et `googletrans==3.0.0`
+
+## lancement de l'application
++ fichier `start.sh` qui facilite de lancement de l'application
+- application très lourde 
 
 ## utilisation
 Utilisation site
